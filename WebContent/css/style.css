@@ -1,0 +1,50 @@
+@charset "ISO-8859-1";
+
+a:link{	
+	
+	text-decoration: none;
+}
+a:visited{
+	color:#4896d3;
+}
+
+a:hover{
+	color:#61cff5;
+	
+	text-decoration:none;
+}
+a:active{
+	color:red;
+}
+th{
+background-color:dimgray;
+color:white;
+padding:10px;
+font-size:21px;
+}
+td{
+	padding:8px;
+}
+.message{
+	font-style: italic;
+	color:blue;
+}
+.error{
+	color:red;
+	margin:5px;
+	
+}
+.nospace{
+margin:0;
+padding:0;
+}
+.mar-left{
+margin-left:20%;
+}
+.footerclass{
+	position:relative;
+	margin-top:12%;
+}
+.borderc{
+	border:1px solid black;
+}

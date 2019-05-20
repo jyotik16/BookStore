@@ -1,0 +1,25 @@
+@charset "ISO-8859-1";
+
+a:link{
+	color:cornflowerBlue;
+	text-decoration: none;
+}
+a:visited{
+	color:indigo;
+	
+}
+a:{
+	color:blue;
+	text-decoration: underline;
+}
+a:active{
+	color:red;
+}
+th{
+background-color:dimgray;
+color:white;
+}
+.tt{
+	
+	color:red;
+}
