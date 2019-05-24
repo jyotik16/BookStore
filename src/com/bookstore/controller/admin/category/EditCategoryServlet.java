@@ -6,12 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bookstore.controller.admin.BaseServlet;
 import com.bookstore.service.CategoryServices;
 
 @WebServlet("/admin/edit_category")
-public class EditCategoryServlet extends BaseServlet {
+public class EditCategoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     public EditCategoryServlet() {
@@ -21,7 +19,7 @@ public class EditCategoryServlet extends BaseServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CategoryServices cate = new CategoryServices(entityManager, request, response);
+		CategoryServices cate = new CategoryServices( request, response);
 		cate.edit_category();
 	}
 

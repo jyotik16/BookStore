@@ -1,12 +1,11 @@
 package com.bookstore.contoller.admin.book;
 
-import com.bookstore.controller.admin.BaseServlet;
 import com.bookstore.service.BookServices;
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -16,15 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 		maxFileSize = 1024* 300,//300KB
 		maxRequestSize = 1024*1024//1MB
 		)
-public class UpdateBookServlet extends BaseServlet {
+public class UpdateBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    public UpdateBookServlet() {
-        // TODO Auto-generated constructor stub
-    }
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BookServices bookservices = new BookServices(entityManager, request, response);
+		BookServices bookservices = new BookServices( request, response);
 		bookservices.updatebook();
 		
 	}

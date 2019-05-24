@@ -2,11 +2,12 @@ package com.bookstore.service;
 
 import java.io.IOException;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
 
@@ -14,15 +15,13 @@ import com.bookstore.entity.Category;
 
 public class CategoryServices {
 	private CategoryDAO categoryDAO;
-	protected EntityManager entityManager;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	public CategoryServices(EntityManager entityManager ,HttpServletRequest request, HttpServletResponse response) {
+	public CategoryServices(HttpServletRequest request, HttpServletResponse response) {
 		this.request = request;
 		this.response = response;
-		this.entityManager = entityManager;
-		categoryDAO = new CategoryDAO(entityManager);
+		categoryDAO = new CategoryDAO();
 
 	}
 	public void listCategory() throws ServletException, IOException {
@@ -46,7 +45,7 @@ public class CategoryServices {
 	
 	public void createCategory() throws ServletException, IOException {
 		
-		String Name = request.getParameter("Name");
+		String Name = request.getParameter("categoryname");
 		
 		Category exitCategory = categoryDAO.findByName(Name);
 		if (exitCategory != null) {
@@ -64,10 +63,8 @@ public class CategoryServices {
 
 	public void update_category() throws ServletException, IOException {
 		String categoryId = request.getParameter("categoryId"); //hidden value
-		System.out.println(categoryId);
-		
 		int ID = Integer.parseInt(categoryId);
-		System.out.println(ID);
+		System.out.println("categoryId=="+categoryId);
 		String name = request.getParameter("Name");
 				
 		Category categoryById = categoryDAO.get(ID);
@@ -100,9 +97,18 @@ public class CategoryServices {
 		
 	}
 	public void delete_category() throws ServletException, IOException {
-		int ID = Integer.parseInt(request.getParameter("id"));
-		categoryDAO.delete(ID);
-		String msg = "category has been delete successfully!";
+		int categoryId = Integer.parseInt(request.getParameter("id"));
+		BookDAO bookdao = new BookDAO();
+		long numOfBooks = bookdao.countBycategory(categoryId);
+		String msg;
+		if(numOfBooks>0) {
+			msg = "Could not delete a category with (ID: %d) because it currently contains some books.";
+			msg = String.format(msg,numOfBooks);
+		}else {
+				categoryDAO.delete(categoryId);
+			 msg = "The category with ID " +categoryId+" has been delete successfully!";
+		}
+		
 		listCategory(msg);
 	}
 

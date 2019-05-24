@@ -6,11 +6,10 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
@@ -20,14 +19,21 @@
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Libraries CSS Files -->
-<link href="../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="../lib/animate/animate.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 
 
 <meta charset="ISO-8859-1">
 <title>Create New Category</title>
+<c:choose>
+		<c:when test="${category!=null}">
+			<title>Edit Category</title>
+		</c:when>
+		<c:otherwise>
+			<title>Create New Category</title>
+		</c:otherwise>
+	</c:choose>
 </head>
 <body>
 
@@ -35,10 +41,10 @@
 
 	<c:choose>
 		<c:when test="${category!=null}">
-			<h3 align="center">Edit Category</h3>
+			<h3 class="pageheading">Edit Category</h3>
 		</c:when>
 		<c:otherwise>
-			<h3 align="center">Create New Category</h3>
+			<h3 class="pageheading">Create New Category</h3>
 		</c:otherwise>
 	</c:choose>
 
@@ -47,14 +53,11 @@
 		<div class="row">
 			<div class="col-sm-10">
 				<c:if test="${category != null}">
-					<form name="categoryform" action="update_category" method="post"
-						 id="categoryform">
-						<input type="hidden" name="categoryId"
-							value="${category.categoryId}">
+					<form name="categoryform" action="update_category" method="post" id="categoryform">
+						<input type="hidden" name="categoryId" value="${category.categoryId}">
 				</c:if>
 				<c:if test="${category == null}">
-					<form name="categoryform" action="create_category" method="post"
-						 id="categoryform">
+					<form name="categoryform" action="create_category" method="post" id="categoryform">
 				</c:if>
 				<table>
 					<tr>
@@ -68,8 +71,7 @@
 					</tr>
 					<tr>
 						<td><button type="submit" class="btn btn-primary">Submit</button>
-							<input type="button" class="btn btn-primary"
-							onclick="javascript:history.go(-1);" value="Cancel" /></td>
+							<input type="button" class="btn btn-primary" onclick="javascript:history.go(-1);" value="Cancel" /></td>
 					</tr>
 				</table>
 				</form>

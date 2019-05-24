@@ -3,31 +3,24 @@ package com.bookstore.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.bookstore.dao.CategoryDAO;
 import com.bookstore.entity.Category;
-import com.bookstore.entity.Users;
 
-public class CategoryDAOTest extends BaseDAOTest{
+
+public class CategoryDAOTest {
 	private static CategoryDAO categoryDAO;
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-		categoryDAO = new CategoryDAO(entityManager);
+		categoryDAO = new CategoryDAO();
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		categoryDAO.close();
 	}
 	@Test
 	public void testGet() {
@@ -39,7 +32,7 @@ public class CategoryDAOTest extends BaseDAOTest{
 
 	@Test
 	public void testGetCategory() {
-		Category newCate = new Category("Buissness");
+		Category newCate = new Category("Spring");
 		Category category = categoryDAO.create(newCate);
 		
 		assertTrue(category!=null && category.getCategoryId()>0);
@@ -77,7 +70,7 @@ public class CategoryDAOTest extends BaseDAOTest{
 	public void testCount() {
 		long totalcategories = categoryDAO.count();
 		
-		assertEquals(4, totalcategories);
+		assertTrue(totalcategories > 0);
 	}
 	@Test
 	public void testfindByName() {

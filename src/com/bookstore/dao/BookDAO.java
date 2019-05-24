@@ -11,9 +11,7 @@ import com.bookstore.entity.Category;
 
 public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 
-	public BookDAO(EntityManager entitymanager) {
-		super(entitymanager);
-		
+	public BookDAO() {			
 	}
 	@Override
 	public Book create(Book book) {
@@ -24,8 +22,7 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 	}
 	@Override
 	public Book update(Book book) {
-		book.setLastUpdateTime(new Date());
-		
+		book.setLastUpdateTime(new Date());		
 		return super.update(book);
 		
 	}
@@ -66,11 +63,11 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 	public long count() {
 		return super.countWithNamedQuery("Book.countAll");
 	}
+	public long countBycategory(int categoryId) {
+		return super.countWithNamedQuery("Book.countByCategory","catId", categoryId);
+	}
 	public List<Book> listNewBook(){
-		Query query = entitymanager.createNamedQuery("Book.listNew");
-		query.setFirstResult(0);
-		query.setMaxResults(4);
-		return query.getResultList();
+		return super.findWithNamedQuery("Book.listNew", 0, 4);
 		
 	}
 	public List<Book> search(String keyword){

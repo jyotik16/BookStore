@@ -3,31 +3,26 @@ package com.bookstore.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
 import com.bookstore.dao.UsersDAO;
 import com.bookstore.entity.Users;
 
-public class UsersDAOTest extends BaseDAOTest{
+public class UsersDAOTest {
 	
 	private static UsersDAO userDAO;
 
 	@BeforeClass
-	public static void setupClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-
-		userDAO = new UsersDAO(entityManager);
+	public static void setupBeforeClass() throws Exception {
+		userDAO = new UsersDAO();
 	}
-
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception{
+		userDAO.close();
+	}
 	@Test
 	public void testCreateUsers() {
 		Users newUser = new Users();
@@ -134,11 +129,4 @@ public class UsersDAOTest extends BaseDAOTest{
 		assertNotNull(user);
 	}
 	
-	@AfterClass
-	public static void tearDownClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
-		
-
-	}
-
 }

@@ -5,8 +5,9 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"	rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">	
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
 
@@ -26,13 +27,13 @@
 <body>
 
 	<jsp:directive.include file="admin_header.jsp" />
-	<h2 align="center" class="py-2">Administrative Dashboard</h2>
+	<h3 align="center" class="py-2">Administrative Dashboard</h3>
 	<hr width="60%;"/>
 	<div class="container" align="center">
 		<div class="row">
 			
 			<div class="col-sm-12">
-			<h3 align="center">QuickActions</h3>
+			<h4 align="center">QuickActions</h4>
 				<a href="/user_list">NewUser</a> &nbsp; <a href="createcategory">NewCategory</a>
 				&nbsp; <a href="createbook">NewBook</a> &nbsp; <a
 					href="createcustomer">NewCustomer</a> &nbsp;

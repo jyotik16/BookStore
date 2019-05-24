@@ -1,4 +1,4 @@
-<div align="center" class="container" id="link">
+<div align="center" class="container"  style="margin-top:20%;">
 <h4>CopyRight (C) 2019 by Bookify co. Ltd </h4>
 <a href="login.jsp">About us</a> |
 <a href="login.jsp">Contact us</a> |

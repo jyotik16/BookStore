@@ -6,10 +6,10 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="..//css/richtext.min.css">
 <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,15 +19,15 @@
 <script src="../js/jquery-3.4.0.min.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
-
+<script src="../js/jquery.richtext.min.js"></script>
 <meta charset="ISO-8859-1">
 
 <c:choose>
 		<c:when test="${book!=null}">
-			<title>Create New Book</title>
+			<title>Edit Book</title>
 		</c:when>
 		<c:otherwise>
-			<title>Edit Book</title>
+			<title>Create New Book</title>
 		</c:otherwise>
 </c:choose>
 </head>
@@ -36,15 +36,15 @@
 
 	<c:choose>
 		<c:when test="${book!=null}">
-			<h3 align="center">Edit Book</h3>
+			<h3 class="pageheading">Edit Book</h3>
 		</c:when>
 		<c:otherwise>
-			<h3 align="center" class="tt">Create New Book</h3>
+			<h3 class="pageheading">Create New Book</h3>
 		</c:otherwise>
 	</c:choose>
 
 	<hr width="60%;" />
-	<div class="container" align="center" style="margin-left: 15%">
+	<div class="container" id="book-form">
 		<div class="row">
 			<div class="col-md-10 mb-md-0 mb-5">
 				<c:if test="${book != null}">
@@ -149,7 +149,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-					<img id="thumbnail" alt="Image preview" style="width:30%;border:2px groove dimgray;" src="data:image/jpg;base64,${book.base64Image}"/>
+					<img id="book-preview" alt="Image preview" src="data:image/jpg;base64,${book.base64Image}"/>
 					</div>
 					<!--Grid column-->
 				</div>
@@ -171,6 +171,7 @@
 	<script type="text/javascript">
 		$(function() {
 			$("#publishdate").datepicker();
+			$("#description").richText();
 			$("#bookImage").change(function(){
 				showImageThumbnail(this);
 				});
@@ -219,12 +220,5 @@
 		} 
 	</script>
 	<jsp:directive.include file="admin_footer.jsp" />
-<!-- 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
 </body>
 </html>

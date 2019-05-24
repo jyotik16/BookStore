@@ -7,8 +7,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,17 +20,14 @@ import com.bookstore.entity.Category;
 
 public class BookServices {
 	private BookDAO bookDAO;	
-	protected EntityManager entityManager;
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private CategoryDAO categoryDAO;
 	
-	public BookServices(EntityManager entityManager, HttpServletRequest request,
-			HttpServletResponse response) {
+	public BookServices( HttpServletRequest request,HttpServletResponse response) {
 		super();
-		bookDAO = new BookDAO(entityManager);
-		categoryDAO = new CategoryDAO(entityManager);
-		this.entityManager = entityManager;
+		bookDAO = new BookDAO();
+		categoryDAO = new CategoryDAO();
 		this.request = request;
 		this.response = response;
 	}
@@ -145,7 +140,7 @@ public class BookServices {
 		String title = request.getParameter("title");		
 		Book bookByTitle = bookDAO.findByTitle(title);
 	
-		if(!bookById.equals(bookByTitle)) {
+		if(bookByTitle!=null && !bookById.equals(bookByTitle)) {
 			String msg = "Could not update book because another book having same title * "+title+" * book already exits.";
 			listBooks(msg);
 			return;
@@ -170,12 +165,10 @@ public class BookServices {
 		System.out.println("id = "+categoryId);
 		List<Book> listbooks = bookDAO.listByCategory(categoryId);
 		Category category = categoryDAO.get(categoryId);
-		List<Category> listcategory = categoryDAO.listAll();
-		
+				
 		request.setAttribute("listbooks",listbooks);
 		request.setAttribute("category",category);
-		request.setAttribute("listcategory",listcategory);
-		
+			
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/books_list_by_category.jsp");
 		rd.forward(request, response);
 		
@@ -183,12 +176,9 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		
-		List<Category> listcategory = categoryDAO.listAll();
-		
+					
 		request.setAttribute("book",book);
-		request.setAttribute("listcategory",listcategory);
-		
+				
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/book_detail.jsp");
 		rd.forward(request, response);
 		

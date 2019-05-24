@@ -5,10 +5,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+-->
 <!-- Google Fonts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700" rel="stylesheet">
-<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
@@ -36,10 +39,10 @@
 
 	<c:choose>
 		<c:when test="${user!=null}">
-			<h3 align="center">Edit User</h3>
+			<h3 class="pageheading">Edit User</h3>
 		</c:when>
 		<c:otherwise>
-			<h3 align="center">Create New User</h3>
+			<h3 class="pageheading">Create New User</h3>
 		</c:otherwise>
 	</c:choose>
 

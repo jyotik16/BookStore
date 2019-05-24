@@ -5,20 +5,16 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--  <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 <!-- Bootstrap CSS File -->
-<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!-- Libraries CSS Files -->
-<link href="../lib/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet">
-<link href="../lib/animate/animate.min.css" rel="stylesheet">
+<link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
 <link href="css/style.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Book in ${category.name}-Online Book shop</title>
@@ -38,7 +34,7 @@
 						<a href="view_book?id=${book.bookId}"><img src="data:image/jpg;base64,${book.base64Image }" width="130" height="164" /></a>
 					</div>
 					<div class="p-0"><a href="view_book?id=${book.bookId}">
-						<b>${book.title}</b></a>						
+						<span class="book-title"><b>${book.title}</b></span></a>						
 					</div>
 					<div class="p-0">Rating *****</div>
 					<div class="p-0"><i>${book.author}</i></div>

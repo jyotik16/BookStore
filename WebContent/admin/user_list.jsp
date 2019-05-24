@@ -6,41 +6,38 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
- <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
  
-<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/style.css" rel="stylesheet">
+<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet"></link>
+<link href="../css/style.css" rel="stylesheet"></link>
+<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/jquery-3.4.0.min.js"></script>
+<script src="../js/jquery.validate.min.js"></script>
 <meta charset="ISO-8859-1">
 <title>Manage UserList-Bookify-Online Book shop</title>
 </head>
 
 <body>
-<style>
-
-</style>
-
 	<jsp:directive.include file="admin_header.jsp" />
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-sm-12">
-				<h2>User Management</h2>
+				<h3>User Management</h3>
 				<a href="user_form.jsp">Create New User </a>
 				
 			</div>
 			<c:choose>
 			<c:when test="${message!=null}">
-			<div class="col-sm-12">
-			<h3 align="center"> ${message} </h3>
+			<div class="col-sm-12 py-2">
+			<h4 align="center"> ${message} </h4>
 			</div>
 			</c:when>
 			<c:otherwise>
@@ -94,10 +91,6 @@
 		}} */
  
 </script>
-<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/jquery-ui.min.css"></script>
-<script src="../js/jquery-3.4.0.min.js"></script>
-<script src="../js/jquery.validate.min.js"></script>
+
 </body>
 </html>

@@ -18,18 +18,16 @@ import org.junit.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
 
-public class BookDAOTest extends BaseDAOTest {
+public class BookDAOTest {
 private static BookDAO bookDAO;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		BaseDAOTest.setUpBeforeClass();
-		bookDAO = new BookDAO(entityManager);
-		
+		bookDAO = new BookDAO();		
 	}
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-		BaseDAOTest.tearDownAfterClass();
+		bookDAO.close();
 		
 	}
 	@Test
@@ -134,7 +132,7 @@ private static BookDAO bookDAO;
 	@Test
 	public void testCount() {
 		long totalBooks = bookDAO.count();
-		assertEquals(2,totalBooks);
+		assertTrue(totalBooks>0);
 	}
 	@Test
 	public void testlistByCategory() {
@@ -183,5 +181,10 @@ private static BookDAO bookDAO;
 		assertEquals(1,list.size());
 		
 	}
-	
+	@Test
+	public void testCountByCategory() {
+		int categoryId =1;
+		 long numOfBooks = bookDAO.countBycategory(categoryId);
+		assertTrue(numOfBooks >0);
+	}
 }

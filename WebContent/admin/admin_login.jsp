@@ -1,22 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html>
 <head>
 <!-- Google Fonts -->
-<link 	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+ <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
-<link href="../css/style.css" rel="stylesheet">
-<script src="../js/jquery-1.12.4.js"></script>
+<link href="../css/jquery-ui.min.css" rel="stylesheet">
+
 <script src="../js/jquery-3.4.0.min.js"></script>
+
 <script src="../js/jquery.validate.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
+
+
+<link href="../css/style.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Admin Login</title>
 </head>
@@ -27,11 +31,11 @@
 	<div class="container py-1" align="center">
 		<div class="row">
 		<div class="col-12">
-		<h2 align="center">Admin Login</h2>
+		<h3 align="center">Admin Login</h3>
 		</div>		
 		<c:if test="${message!=null}">
 		<div class="col-12">
-		<h3 align="center">${message}</h3>
+		<h4 align="center">${message}</h4>
 		</div>
 		</c:if>		
 		
@@ -51,7 +55,7 @@
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
-							<input type="submit" value="Login" class="btn btn-primary"/ ></td>
+							<input type="submit" value="Login" class="btn btn-primary"/></td>
 							<td></td>
 					</table>
 				</form>
@@ -83,12 +87,10 @@
 
 		});
 	</script>
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
  <!-- aman@mail.com 12345 -->
 </body>
 </html>

@@ -1,25 +1,25 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <section class="bg-dark text-light text-center">
 	<div class="d-inline-flex flex-row justify-content-center text-light">
 		<div class="p-2 ">
-			<i class="fa fa-book" style="font-size: 40px;"></i>
+			<a href="${pageContext.request.contextPath}/admin/"><i class="fa fa-book" id="book-logo" ></i></a>
 		</div>
 		<div class="p-2">
-			<h1 align="center" class="heading"
-				style="font-size: 40px; font-weight: 700;">EverGreen BookStore</h1>
+			<a href="${pageContext.request.contextPath}/admin/"><h1 class="heading" id="evergreen">EverGreen BookStore</h1></a>
 		</div>
 	</div>
 </section>
 <div class="container" align="center">
-	<div class="row" align="center">
-		<div class="col-12 col-sm-12 text-center py-1">
-			<p class="text-secondary" id="pp">
-				<i>Online Programming Bookstore</i>
+	<div class="row">
+		<div class="col-12 col-xs-12 text-center">
+			<p class="text-secondary"><i>Online Programming Bookstore</i>
 			</p>
 		</div>
 	</div>
 	<div class="row" align="center">
-		<div class="col-lg-4 col-sm-8 col-xs-8  pr-0 mr-0 mar-left" >
+	<div class="col-12">	
+	<div class="row" >	
+		<div class="col-lg-4 col-xs-4 mar-left" >
 			<form class="form-inline" action="search" method="get">
 				 <label for="search"></label>
 					<input type="text" class="form-control" name="keyword" placeholder="Keywords" />  &nbsp;
@@ -27,12 +27,19 @@
 		
 			</form>
 		</div>
-		<div class="col-lg-4 col-sm-8 col-xs-8 pl-0 ml-0 py-2" style="font-size: 20px;">
-			<a href="#"> Sign in |</a> <a href="#"> Login |</a> <a href="#">
-				Cart </a>
+		<div class="col-lg-6 col-xs-8  ">
+			<c:if test="${loggedCustomer == null}" >
+			<a href="login"> Sign in |</a> <a href="register"> Register |</a>
+			</c:if>
+			<c:if test="${loggedCustomer != null}" >
+			<a href="view_profile"> Welcome, ${loggedCustomer.fullname} |</a> 
+			<a href="view_orders"> My Orders|</a>
+			<a href="logout"> Logout|</a>
+			</c:if>
+			 <a href="#">Cart </a>
 		</div>
-		
-		
+		</div>
+	</div>		
 	</div>
 	<div class="row py-1">
 		<div class="col-sm-12 col-xs-12 text-center">

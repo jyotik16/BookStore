@@ -6,11 +6,10 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<link
-	href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Poppins:300,400,500,700"
-	rel="stylesheet">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <!-- <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
@@ -30,15 +29,15 @@
 	<jsp:directive.include file="admin_header.jsp" />
 	<div class="container" align="center">
 		<div class="row">
-			<div class="col-sm-12">
-				<h2>Category Management</h2>
+			<div class="col-12 py-2">
+				<h3>Category Management</h3>
 				<a href="category_form.jsp">Create New Category </a>
 				
 			</div>
 			<c:choose>
 			<c:when test="${message!=null}">
-			<div class="col-sm-12">
-			<h3 align="center"> ${message} </h3>
+			<div class="col-12">
+			<h4 class="message"> ${message} </h4>
 			</div>
 			</c:when>
 			<c:otherwise>
@@ -46,7 +45,7 @@
 			</c:otherwise>
 			</c:choose>
 			
-			<div class="col-sm-12">
+			<div class="col -12">
 				<table border=1 cellpadding="10">
 					<tr>
 						<th>Index</th>
