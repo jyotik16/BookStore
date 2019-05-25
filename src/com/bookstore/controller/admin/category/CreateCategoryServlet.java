@@ -14,7 +14,7 @@ public class CreateCategoryServlet extends HttpServlet {
    
     public CreateCategoryServlet() {
         super();
-            }
+      }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryServices cateservices  = new CategoryServices( request, response);

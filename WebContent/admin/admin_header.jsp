@@ -45,7 +45,7 @@
 			</a> &nbsp; 
 		</div>
 		<div class="col-md-2 col-sm-4 col-6 px-0">
-			<a href=""> <i class="fa fa-comments" style="font-size: 30px;"></i><br>Reviews
+			<a href="list_review"> <i class="fa fa-comments" style="font-size: 30px;"></i><br>Reviews
 			</a>
 		</div>
 	</div>

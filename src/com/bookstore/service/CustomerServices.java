@@ -105,12 +105,16 @@ public class CustomerServices {
 		customer.setAddress(address);
 		customer.setCity(City);
 		customer.setCountry(Country);
+		if(email!=null && !email.equals("")) {
 		customer.setEmail(email);
+		}
+		if(Password!=null && !Password.equals("")) {
+			customer.setPassword(Password);
+			}
 		customer.setFullname(Fullname);
 		customer.setZipcode(Zipcode);
 		customer.setPhone(Phoneno);
-		customer.setPassword(Password);
-		
+			
 	}
 	
 	public void delete_customer() throws ServletException, IOException {
@@ -170,5 +174,18 @@ public class CustomerServices {
 		System.out.println("profile...");
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/customer_profile.jsp");
 		rd.forward(request, response);
+	}
+
+	public void showCustomerProfileEditForm() throws ServletException, IOException {
+		RequestDispatcher rd = request.getRequestDispatcher("frontend/edit_profile.jsp");
+		rd.forward(request, response);
+	}
+
+	public void updateCustomerProfile() throws ServletException, IOException {
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		updateCustomerFieldsForm(customer);
+		customerDAO.update(customer);
+		
+		showCustomerProfile();
 	}
 }

@@ -16,7 +16,6 @@ public class DeleteCategoryServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryServices cate = new CategoryServices( request, response);
 		cate.delete_category();

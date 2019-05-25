@@ -15,8 +15,10 @@ import javax.servlet.http.Part;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CategoryDAO;
+import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Category;
+import com.bookstore.entity.Review;
 
 public class BookServices {
 	private BookDAO bookDAO;	
@@ -176,9 +178,9 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-					
+		Review review = reviewDAO.		
 		request.setAttribute("book",book);
-				
+		request.setAttribute("review",book);		
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/book_detail.jsp");
 		rd.forward(request, response);
 		
@@ -195,7 +197,6 @@ public class BookServices {
 			request.setAttribute("result", result);
 			request.setAttribute("keyword", keyword);
 		}
-		
 		
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/search_result.jsp");
 		rd.forward(request, response);

@@ -14,7 +14,7 @@
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="css/jquery-ui.min.css" rel="stylesheet"></link>
 <link href="css/style.css" rel="stylesheet">
-
+<script src="../js/jquery-ui.min.js"></script>
 <script src="js/jquery-3.4.0.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <meta charset="ISO-8859-1">

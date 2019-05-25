@@ -19,40 +19,62 @@
 <body>
 <jsp:directive.include file="header.jsp" />
 	<div class="container my-2" style="border:2px solid grey;">
-		<div class="row m-2">
-			<div class="col-12">
-				<h3> ${book.title} </h3> By <i> ${book.author} </i>
-			</div>
-		</div>
-		<div class="row m-2">
-			<div class="col-3 col-xs-12 pr-0 mr-0" >
+		<table class="table borderless" >
+		<tr>
+		<td colspan="2"> <h3>${book.title} </h3></td> <td></td>
+		</tr>
+		<tr>
+		<td>By <i> ${book.author} </i><td></td><td></td>
+		</tr>	
+		<tr>
+		<td>
 			<img src="data:image/jpg;base64,${book.base64Image }" id="book-detail" />
-			</div>
-			<div class="col-7 col-xs-12" >
-				<div class="row">
-					<div class="col-xs-12 col-12">
-					<b>Rating ***** </b>
-					
-					</div>
-					<div class="col-xs-12 col-12 text-justify" >
-					<h4>Description</h4>
-					<p class="nosapce">${book.description}</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-2">
-					$ <b>${book.price}</b> <br/>
-					<button type="submit" class="btn btn-primary">Add To Cart</button>
-			</div>					
-		</div>
-		<div class="row m-2">
-		<div class="col-4">
-			<h4>Customer Reviews</h4>
-		</div>
-		<div class="col-8">
-		<button type="submit" class="btn btn-primary">Write Reviews</button>
-		</div>
-		</div>
+		</td> 
+		<td>
+			<jsp:directive.include file="book_rating.jsp" />
+			<h4>Description</h4>
+				${book.description}
+			
+		</td> 
+		<td>	$ <b>${book.price}</b> <br/>
+				<button type="submit" class="btn btn-primary btn-block" >Add To Cart</button>
+		</td>
+		</tr>
+		<tr>
+		<td><h4>Customer Reviews</h4></td> 
+		<td> <button type="submit" class="btn btn-primary">Write Reviews</button></td>   
+		<td></td>
+		</tr>	
+		<tr>
+				<td colspan="3">
+					<table class="table borderless">
+						<c:forEach items=" ${book.reviews}" var="review">
+							<tr>
+								<td>
+									<c:forTokens items="${book.ratingStars}" delims="," var="star">
+										<c:if test="${star eq 'on'}">
+											<img src="images/rating-on.png" />
+										</c:if>
+										<c:if test="${star eq 'off'}">
+											<img src="images/rating-off.png" />
+										</c:if>
+									</c:forTokens> -${review.headline}</td>
+							</tr>
+							<tr>
+								<td>by ${review.customer.fullname} on ${review.reviewTime}
+								</td>
+							</tr>
+							<tr>
+								<td><i> ${review.comment}</i></td>
+							</tr>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</c:forEach>
+					</table>
+				</td>
+			</tr>
+		</table>
 	</div>
 <jsp:directive.include file="footer.jsp" />	
 

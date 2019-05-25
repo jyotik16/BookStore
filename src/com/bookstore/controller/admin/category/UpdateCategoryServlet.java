@@ -16,7 +16,6 @@ public class UpdateCategoryServlet  extends HttpServlet{
         super();
         // TODO Auto-generated constructor stub
     }
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryServices cate = new CategoryServices( request, response);
 		cate.update_category();

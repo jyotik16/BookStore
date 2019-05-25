@@ -16,8 +16,6 @@ public class ListCategoryServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
-
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//response.getWriter().print("list category");
 		CategoryServices cate = new CategoryServices(request,response);

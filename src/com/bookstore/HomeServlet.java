@@ -10,9 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.BookDAO;
 import com.bookstore.entity.Book;
-
-
-
 @WebServlet(urlPatterns="")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

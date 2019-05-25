@@ -23,8 +23,7 @@
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>New Books</h2>
-				
+				<h2>New Books</h2>				
 			</div>
 		</div>
 		<div class="row">			
@@ -36,7 +35,19 @@
 					<div class="p-0"><a href="view_book?id=${book.bookId}">
 						<b style="color:black;">${book.title}</b></a>						
 					</div>
-					<div class="p-0">Rating *****</div>
+					<div class="p-0">					 
+					<c:forTokens items="${book.ratingStars}" delims="," var="star">
+					<c:if test="${star eq 'on'}">
+					<img src="images/rating-on.png" />
+					</c:if>
+					<c:if test="${star eq 'off'}">
+					<img src="images/rating-off.png" />
+					</c:if>
+					<c:if test="${star eq 'half'}">
+					<img src="images/rating-half.png" />
+					</c:if>
+					</c:forTokens>
+					</div>
 					<div class="p-0"><i>${book.author}</i></div>
 					<div class="p-0"><b>$ ${book.price}</b></div>
 				</div>

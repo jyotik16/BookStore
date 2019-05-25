@@ -41,7 +41,9 @@
 						<div class="col-6" align="left">
 							<h4><a href="view_book?id=${book.bookId}"> 
 							<span class="book-title"><b>${book.title}</b></span></a></h4>
-							<p>Rating *****</p>
+							<div class="p-0 m-0">							
+							<jsp:directive.include file="book_rating.jsp" />
+							</div>
 							<p><i>by ${book.author}</i></p>
 							<p>${fn:substring(book.description,0,120)}...</p>
 

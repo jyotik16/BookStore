@@ -16,9 +16,7 @@ public class AdminHomeServlet extends HttpServlet {
     public AdminHomeServlet() {
         super();
         // TODO Auto-generated constructor stub
-    }
-
-	
+    }	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("admin_index.jsp");
 		rd.forward(request, response);

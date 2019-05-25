@@ -14,13 +14,42 @@
 <!-- Libraries CSS Files -->
 <link href="lib/font-awesome/css/font-awesome.min.css"	rel="stylesheet">
 <meta charset="ISO-8859-1">
-<title>EverGreen Bookstore-Online BookStore</title>
+<title>Customer Profile-Online BookStore</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 	<hr width="60%;" />
 	<div align="center">
-	<h4>Customer Profile</h4>
+	<h4>Welcome, ${loggedCustomer.fullname}</h4>
+	</div>
+	<div class="container" align="center">
+	<table class="customer">
+	<tr>
+	<td><b>E-mail:</b><td>${loggedCustomer.email}</td>
+	</tr>
+	<tr>
+	<td><b>Fullname:</b><td>${loggedCustomer.fullname}</td>
+	</tr>
+	<tr>
+	<td><b>Address:</b><td>${loggedCustomer.address}</td>
+	</tr>
+	<tr>
+	<td><b>PhoneNo:</b><td>${loggedCustomer.phone}</td>
+	</tr>
+	<tr>
+	<td><b>City:</b><td>${loggedCustomer.city}</td>
+	</tr>
+	<tr>
+	<td><b>Zipcode:</b><td>${loggedCustomer.zipcode}</td>
+	</tr>
+	<tr>
+	<td><b>Country:</b><td>${loggedCustomer.country}</td>
+	</tr>	
+	<tr> 
+	<td colspan="2" align="center"><b><a href="edit_profile">Edit Profile</a></b></td>
+	
+	</tr>
+	</table>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 </body>

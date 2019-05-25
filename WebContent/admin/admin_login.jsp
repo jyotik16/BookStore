@@ -16,10 +16,9 @@
 <link href="../css/jquery-ui.min.css" rel="stylesheet">
 
 <script src="../js/jquery-3.4.0.min.js"></script>
-
+<script src="../js/jquery-1.12.4.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
-
-
+<script src="../js/jquery-ui.min.js"></script>
 <link href="../css/style.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Admin Login</title>

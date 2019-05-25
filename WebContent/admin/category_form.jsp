@@ -6,7 +6,7 @@
 <html>
 <head>
 <!-- Google Fonts -->
-<!-- Google Fonts -->
+
 <link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,10 +22,12 @@
 <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 <link href="../lib/animate/animate.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-
+	<script src="../js/jquery-ui.min.js"></script>
+	<script src="../css/jquery-ui.min.css"></script>
+	<script src="../js/jquery-3.4.0.min.js"></script>
+	<script src="../js/jquery.validate.min.js"></script>
 
 <meta charset="ISO-8859-1">
-<title>Create New Category</title>
 <c:choose>
 		<c:when test="${category!=null}">
 			<title>Edit Category</title>
@@ -60,18 +62,13 @@
 					<form name="categoryform" action="create_category" method="post" id="categoryform">
 				</c:if>
 				<table>
-					<tr>
-						<td>
-							<div class="form-group">
-								<label for="categoryname">Name:</label> <input type="text"
-									class="form-control-sm" id="categoryname" name="categoryname"
-									placeholder="Enter category Name" value="${category.name}">
-							</div>
-						</td>
+					<tr><td><label for="categoryname">Name:</label></td>
+						<td> <input type="text"	class="form-control" id="categoryname" name="categoryname"
+									placeholder="Enter category Name" value="${category.name}"></td>				
 					</tr>
-					<tr>
-						<td><button type="submit" class="btn btn-primary">Submit</button>
+					<tr><td>&nbsp;&nbsp;<button type="submit" class="btn btn-primary">Submit</button>
 							<input type="button" class="btn btn-primary" onclick="javascript:history.go(-1);" value="Cancel" /></td>
+							<td> &nbsp; </td>
 					</tr>
 				</table>
 				</form>
@@ -96,12 +93,5 @@
 			});
 	</script>
 	<jsp:directive.include file="admin_footer.jsp" />
-	
-	<script src="../js/jquery-ui.min.js"></script>
-	<script src="../css/jquery-ui.min.css"></script>
-	<script src="../js/jquery-3.4.0.min.js"></script>
-	<script src="../js/jquery.validate.min.js"></script>
-
-
 </body>
 </html>

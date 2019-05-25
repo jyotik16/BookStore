@@ -17,7 +17,6 @@ public class EditCategoryServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryServices cate = new CategoryServices( request, response);
 		cate.edit_category();

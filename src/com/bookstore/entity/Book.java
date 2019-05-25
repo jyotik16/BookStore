@@ -181,7 +181,7 @@ public class Book implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
 		return this.reviews;
 	}
@@ -190,7 +190,7 @@ public class Book implements java.io.Serializable {
 		this.reviews = reviews;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "book")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<OrderDetail> getOrderDetails() {
 		return this.orderDetails;
 	}
@@ -207,7 +207,45 @@ public class Book implements java.io.Serializable {
 	public void setBased64Image(String base64) {
 		this.base64Image = base64;
 	}
-
+	@Transient
+	public float getAverageRataing() {
+		float averageRating =0.0f;
+		float sum = 0.0f;
+		if(reviews.isEmpty()) {
+			return 0.0f;
+		}
+		for(Review review: reviews) {
+			sum+=review.getRating();
+		}
+		averageRating = sum/reviews.size();
+		return averageRating;
+	}
+	@Transient
+	public String getRatingStars() {
+		float averageRating = getAverageRataing();
+		
+		return getRatingString(averageRating);
+	}
+	@Transient
+	public String getRatingString(float averageRating) {
+		String result = "";
+		int noOfStarsOn = (int)averageRating;
+		for(int i=1;i<=noOfStarsOn;i++) {
+			result+="on,";
+		}
+		int next  = noOfStarsOn + 1;
+		
+		if(averageRating>noOfStarsOn) {
+			result+= "half,";
+			next++;
+		}
+		for(int i=next;i<=5;i++) {
+			result+="off,";
+		}
+		return result.substring(0,result.length()-1);
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -111,5 +111,22 @@ padding:0;
 		
 }
 #img.search_book_img{
-	width=50px; height=104px;
+	width:150px; height:184px;
+}
+table.customer {	
+	 margin:0 auto;
+}
+
+#review-div{
+	align:center;
+	margin-left:26%;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+table.borderless {
+	 border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
 }

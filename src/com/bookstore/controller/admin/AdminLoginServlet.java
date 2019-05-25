@@ -15,8 +15,7 @@ public class AdminLoginServlet extends HttpServlet {
     
     public AdminLoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+         }
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

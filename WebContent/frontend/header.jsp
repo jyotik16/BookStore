@@ -1,4 +1,4 @@
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <section class="bg-dark text-light text-center">
 	<div class="d-inline-flex flex-row justify-content-center text-light">
 		<div class="p-2 ">
@@ -23,7 +23,7 @@
 			<form class="form-inline" action="search" method="get">
 				 <label for="search"></label>
 					<input type="text" class="form-control" name="keyword" placeholder="Keywords" />  &nbsp;
-					<button type="submit" class="btn btn-primary ">Submit</button>
+					<button type="submit" class="btn btn-primary ">Search</button>
 		
 			</form>
 		</div>
@@ -41,11 +41,13 @@
 		</div>
 	</div>		
 	</div>
-	<div class="row py-1">
-		<div class="col-sm-12 col-xs-12 text-center">
+	<div class="row py-2">
+		<div class="col-12 text-center">
 			<c:forEach var="category" items="${listcategory}" varStatus="status">
-				<a href="view_category?id=${category.categoryId}"> <font
-					size="+1"><b><c:out value="${category.name}" /></b></font>
+				<a href="view_category?id=${category.categoryId}"> 
+				<font size="+1">
+				<b>	<c:out value="${category.name}"/></b>
+				</font>
 				</a>
 				<c:if test="${not status.last}">
 					&nbsp; |&nbsp;
