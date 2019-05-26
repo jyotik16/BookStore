@@ -2,9 +2,12 @@ package com.bookstore.entity;
 // Generated Apr 10, 2019 5:34:44 PM by Hibernate Tools 5.2.10.Final
 
 import java.util.Base64;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -183,7 +186,16 @@ public class Book implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "book")
 	public Set<Review> getReviews() {
-		return this.reviews;
+		TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
+
+			@Override
+			public int compare(Review o1, Review o2) {
+				return o1.getReviewTime().compareTo(o2.getReviewTime());
+			}
+			
+		});
+		sortedReviews.addAll(reviews);
+		return sortedReviews	;
 	}
 
 	public void setReviews(Set<Review> reviews) {

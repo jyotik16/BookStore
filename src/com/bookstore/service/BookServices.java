@@ -25,11 +25,13 @@ public class BookServices {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private CategoryDAO categoryDAO;
+	private ReviewDAO reviewDAO;
 	
 	public BookServices( HttpServletRequest request,HttpServletResponse response) {
 		super();
 		bookDAO = new BookDAO();
 		categoryDAO = new CategoryDAO();
+		reviewDAO = new ReviewDAO();
 		this.request = request;
 		this.response = response;
 	}
@@ -178,9 +180,9 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		Review review = reviewDAO.		
+		Review review = ReviewDAO.		
 		request.setAttribute("book",book);
-		request.setAttribute("review",book);		
+			
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/book_detail.jsp");
 		rd.forward(request, response);
 		
