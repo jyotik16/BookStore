@@ -25,7 +25,25 @@ public class ReviewDAOTest {
 	public static void tearDownAfterClass() throws Exception {
 		reviewDAO.close();
 	}
-
+	
+	@Test
+	public void testfindByCustomerAndBookNotFound() {
+		Integer CustomerId = 123;
+		Integer BookId =12;
+		
+		Review result = reviewDAO.findByCustomerAndBook(CustomerId, BookId);
+		assertNull(result);
+		
+	}
+	@Test
+	public void testfindByCustomerAndBookFound() {
+		Integer CustomerId = 123;
+		Integer BookId =12;
+		
+		Review result = reviewDAO.findByCustomerAndBook(CustomerId, BookId);
+		assertNotNull(result);
+		
+	}
 	@Test
 	public void testCreateReview() {
 		Review review = new Review();

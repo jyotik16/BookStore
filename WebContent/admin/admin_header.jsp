@@ -6,7 +6,7 @@
 		<a href="${pageContext.request.contextPath}/admin/"><i class="fa fa-book" id="book-logo" ></i></a>
 	</div>
 	<div class="p-2">
-		<a href="${pageContext.request.contextPath}/admin/"><h1 class="heading" id="evergreen">EverGreen BookStore</h1></a>
+		<a href="${pageContext.request.contextPath}/"><h1 class="heading" id="evergreen">EverGreen BookStore</h1></a>
 	</div>
 </div>
 </section>

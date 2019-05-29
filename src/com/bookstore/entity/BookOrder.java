@@ -4,6 +4,8 @@ package com.bookstore.entity;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -94,7 +96,7 @@ public class BookOrder implements java.io.Serializable {
 	public Date getOrderDate() {
 		return this.orderDate;
 	}
-
+	
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
@@ -153,13 +155,39 @@ public class BookOrder implements java.io.Serializable {
 		this.status = status;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookOrder")
+	//@OneToMany(fetch = FetchType.EAGER, mappedBy = "bookOrder")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "orders", cascade=CascadeType.ALL,orphanRemoval = true)
 	public Set<OrderDetail> getOrderDetails() {
 		return this.orderDetails;
 	}
 
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((orderId == null) ? 0 : orderId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		BookOrder other = (BookOrder) obj;
+		if (orderId == null) {
+			if (other.orderId != null)
+				return false;
+		} else if (!orderId.equals(other.orderId))
+			return false;
+		return true;
 	}
 
 }

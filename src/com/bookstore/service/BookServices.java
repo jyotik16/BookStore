@@ -7,6 +7,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -180,7 +182,11 @@ public class BookServices {
 	public void viewBookDetail() throws ServletException, IOException {
 		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		Book book = bookDAO.get(bookId);
-		Review review = ReviewDAO.		
+		Set<Review> Stars = book.getReviews();
+		for(Review ss:Stars) {
+			System.out.println(" key-->"+ss.getStars()+" headline "+ss.getHeadline());
+		}
+		
 		request.setAttribute("book",book);
 			
 		RequestDispatcher rd = request.getRequestDispatcher("frontend/book_detail.jsp");

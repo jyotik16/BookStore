@@ -157,8 +157,7 @@
 				<div class="row">
 					<div class="col-md-12 py-2">
 						<button type="submit" class="btn btn-primary">Submit</button>
-						<input type="button" class="btn btn-primary"
-							onclick="javascript:history.go(-1);" value="Cancel" />
+						<input type="button" class="btn btn-primary" id="buttonCancel" value="Cancel" />
 					</div>
 				</div>
 
@@ -205,6 +204,9 @@
 									form.submit();
 								}
 							});
+			$("#buttonCancel").click(function(){
+				history.go(-1);
+				});
 
 		});
 

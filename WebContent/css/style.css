@@ -101,10 +101,12 @@ padding:0;
 .book-title{
 	color:black;
 	font-size:18px;
+	font-weight:bold;
 }
 .book-title:hover{
 	color:grey;
 }
+
 .customer-form{
 	text-align:left;
 	margin-left:30%;
@@ -122,11 +124,24 @@ table.customer {
 	margin-left:26%;
 }
 .borderless td, .borderless th {
-    border: none;
+    border: none; padding-bottom:0;
 }
 table.borderless {
 	 border-top-style: none;
     border-left-style: none;
     border-right-style: none;
     border-bottom-style: none;
+    
+}
+table.marginless td{
+	padding:0;
+}
+.cart{
+	color:white;
+}
+#cart span{
+	padding:15px;
+}
+img.book-cart{
+	width:100px; height:144px;
 }

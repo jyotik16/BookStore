@@ -1,5 +1,6 @@
 package com.bookstore.service;
 
+
 import java.io.IOException;
 import java.util.List;
 
@@ -7,23 +8,24 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.BookDAO;
 import com.bookstore.dao.CustomerDAO;
 import com.bookstore.dao.ReviewDAO;
+import com.bookstore.entity.Book;
+import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
 
 public class ReviewServices {
-	private BookDAO bookDAO;	
+	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
-	private CustomerDAO customerDAO;
 	private ReviewDAO reviewDAO;
 	
 	public ReviewServices( HttpServletRequest request,HttpServletResponse response) {
 		super();
-		bookDAO = new BookDAO();
-		customerDAO = new CustomerDAO();
+		
 		reviewDAO  = new ReviewDAO();
 		this.request = request;
 		this.response = response;
@@ -76,5 +78,52 @@ public class ReviewServices {
 		String msg = "The Review has been deleted successfully!.";
 		listAllReview(msg);
 		
+	}
+	
+	public void showReviewForm() throws ServletException, IOException {
+		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+		BookDAO bookDAO = new BookDAO();
+		Book book = bookDAO.get(bookId);
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("book", book);
+		Customer customer = (Customer)session.getAttribute("loggedCustomer");
+		
+		Review exitreview = reviewDAO.findByCustomerAndBook(customer.getCustomerId(),bookId);
+		
+		String targetPage = null;
+		if(exitreview!=null) {
+			request.setAttribute("review",exitreview);
+			targetPage = "frontend/review_info.jsp";
+			
+		}else {
+			targetPage="frontend/review_form.jsp";			
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(targetPage);
+		rd.forward(request, response);
+		
+	}
+	public void submitReview() throws ServletException, IOException {
+		Integer bookreviewId = Integer.parseInt(request.getParameter("bookId"));
+		float rating = Float.parseFloat(request.getParameter("rating"));
+		String headline = request.getParameter("headline");
+		String comment = request.getParameter("comment");
+		Review review  = new Review();
+		review.setComment(comment);
+		review.setHeadline(headline);
+		review.setRating(rating);
+		
+		Book book = new Book();
+		book.setBookId(bookreviewId);
+		
+		review.setBook(book);
+		
+		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
+		review.setCustomer(customer);
+		reviewDAO.create(review);
+					
+		String targetPage="frontend/review_done.jsp";
+		RequestDispatcher rd = request.getRequestDispatcher(targetPage);
+		rd.forward(request, response);
 	}
 }

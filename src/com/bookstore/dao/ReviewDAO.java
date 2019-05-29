@@ -1,7 +1,9 @@
 package com.bookstore.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.bookstore.entity.Category;
 import com.bookstore.entity.Review;
@@ -48,5 +50,16 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review> {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	public Review findByCustomerAndBook(Integer CustomerId,Integer BookId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("customerId",CustomerId);
+		parameters.put("bookId",BookId);
+		
+		List<Review> result = super.findWithNamedQuery("Review.findByCustomerAndBook", parameters);
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
+		
+	}
 }

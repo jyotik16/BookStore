@@ -11,10 +11,8 @@
 <!--  <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 <!-- Bootstrap CSS File -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
 <!-- Libraries CSS Files -->
 <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-
 <link href="css/style.css" rel="stylesheet">
 <meta charset="ISO-8859-1">
 <title>Book in ${category.name}-Online Book shop</title>
