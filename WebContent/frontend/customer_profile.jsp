@@ -46,7 +46,10 @@
 	<td><b>Country:</b><td>${loggedCustomer.country}</td>
 	</tr>	
 	<tr> 
-	<td colspan="2" align="center"><b><a href="edit_profile">Edit Profile</a></b></td>
+	<td colspan="2" align="center">
+	<b><a href="edit_profile">Edit Profile</a></b> &nbsp; &nbsp; &nbsp;
+	<b><a href="${pageContext.request.contextPath}">Go to Shopping</a></b>
+	</td>
 	
 	</tr>
 	</table>

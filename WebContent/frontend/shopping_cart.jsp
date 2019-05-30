@@ -67,10 +67,10 @@
 		<tr>
 			<td></td>
 			<td colspan="2">
-			<span><button type="submit" class="btn btn-primary">Update</button></span>
+			<span><button type="submit" class="btn btn-primary">UpdateCart</button></span>
 			<span><input type="button" id="Clearcartbutton" class="btn btn-primary" value="ClearCart"></span>
 			<span><a href="${pageContext.request.contextPath}">Continue Shopping</a></span>
-			<span><a href="">CheckOut</a></td></span>
+			<span><a href="checkout">CheckOut</a></span> </td>
 				
 		</tr>
 		</table>

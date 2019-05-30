@@ -18,7 +18,7 @@ public class BookRatingTest {
 		
 		reviews.add(r1);
 		book.setReviews(reviews);
-		float avgrating = book.getAverageRataing();
+		float avgrating = book.getAverageRating();
 		
 		assertEquals(5.0, avgrating,0.0);
 		
@@ -26,7 +26,7 @@ public class BookRatingTest {
 	@Test
 	public void testAverageRating2() {
 		Book book = new Book();
-		float avgrating = book.getAverageRataing();
+		float avgrating = book.getAverageRating();
 		assertEquals(5.0, avgrating,0.0);
 		
 	}
@@ -45,7 +45,7 @@ public class BookRatingTest {
 		
 		book.setReviews(reviews);
 		
-		float avgrating = book.getAverageRataing();
+		float avgrating = book.getAverageRating();
 		assertEquals(5.0, avgrating,0.0);
 		
 	}

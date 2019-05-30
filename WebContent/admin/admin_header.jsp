@@ -41,7 +41,7 @@
 			</a> &nbsp; 
 		</div>
 		<div class="col-md-2 col-sm-4 col-6 px-0">
-			<a href=""> <i class="fa fa-first-order" style="font-size: 30px;"></i><br>Orders
+			<a href="list_order"> <i class="fa fa-first-order" style="font-size: 30px;"></i><br>Orders
 			</a> &nbsp; 
 		</div>
 		<div class="col-md-2 col-sm-4 col-6 px-0">

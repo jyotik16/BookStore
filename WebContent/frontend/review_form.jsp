@@ -13,7 +13,7 @@
 <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/jquery-ui.min.css" rel="stylesheet"></link>
+<link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
 <script src="js/jquery-3.4.0.min.js"></script>
@@ -46,14 +46,14 @@
 					id="book-detail" /></td>
 				<td> <div id="rateYo"> </div>
 				<input type="hidden" id="rating" name="rating" />
-				<input type="hidden" name="bookId" value="${book.bookId}" />
+				<input type="hidden" name="bookId"  class="form-control" value="${book.bookId}" />
 				</td>
 				</tr>
 				<tr>
-				<td><input type="text" name="headline" size="70" placeholder="Headline or Summary for your review (required)" /></td>
+				<td><input type="text" name="headline" size="70" class="form-control" placeholder="Headline or Summary for your review (required)" /></td>
 				</tr>
 				<tr>
-				<td><textarea name="comment" cols="70" rows="7"
+				<td><textarea name="comment" cols="70" rows="7" class="form-control" 
 							placeholder="Write Your Review..."></textarea></td>
 				</tr>
 				<tr>

@@ -17,7 +17,6 @@
 <meta charset="ISO-8859-1">
 <title>Customer Login</title>
 </head>
-
 <body>
 	<jsp:directive.include file="header.jsp" />	
 	<div class="container py-1" align="center">
@@ -72,7 +71,9 @@
 					password : "Please enter password"
 
 				}
-
+				submitHandler : function(form) {
+					form.submit();
+				}
 			});
 
 		});

@@ -3,53 +3,55 @@ package com.bookstore.dao;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.criteria.Order;
+
 import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Category;
+import com.bookstore.entity.Customer;
 
 public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder> {
 
 	@Override
 	public BookOrder create(BookOrder order) {
 		order.setOrderDate(new Date());
-		order.setPaymentMethod("Cash On Delivery");
 		order.setStatus("Processing");
 		return super.create(order);
 	}
 
 	@Override
-	public BookOrder get(Object id) {
-		// TODO Auto-generated method stub
-		return null;
+	public BookOrder get(Object orderId) {
+		
+		return super.find(BookOrder.class, orderId);
 	}
 
 	@Override
 	public BookOrder update(BookOrder order) {
-		// TODO Auto-generated method stub
-		return null;
+		return super.update(order);
 	}
 
 	@Override
-	public void delete(Object id) {
-		// TODO Auto-generated method stub
+	public void delete(Object orderId) {
+		super.delete(BookOrder.class, orderId);
 		
 	}
 
 	@Override
 	public List<BookOrder> listAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return super.findWithNamedQuery("BookOrder.findAll");
 	}
 
 	@Override
 	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
+		return super.countWithNamedQuery("BookOrder.countAll");
 	}
 
+	
 	@Override
 	public Category get(Category category) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	public List<BookOrder> listByCutsomer(Integer customerId){
+		return super.findWithNamedQuery("BookOrder.findByCustomer","customerId", customerId);
 	}
 	
 

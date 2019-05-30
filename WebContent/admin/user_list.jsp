@@ -46,7 +46,7 @@
 			</c:choose>
 			
 			<div class="col-sm-12">
-				<table border=1 cellpadding="10">
+				<table border=1 class="table">
 					<tr>
 						<th >Index</th>
 						<th>ID</th>

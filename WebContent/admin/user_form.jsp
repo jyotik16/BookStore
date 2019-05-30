@@ -5,17 +5,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
--->
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<!-- 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>	
 <script src="https://cdn.jsdelivr.net/jquery/1.12.4/jquery.min.js"></script>
  -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
 
@@ -49,7 +47,7 @@
 	<hr width="60%;" />
 	<div class="container" align="center">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-6" style="margin-left:20%; ">
 				<c:if test="${user != null}">
 					<form name="userform" id="userform" action="update_user" method="post" >
 						<input type="hidden" name="userId" value="${user.userid}">
@@ -57,27 +55,34 @@
 				<c:if test="${user == null}">
 					<form name="userform" id="userform" action="create_user" method="post">
 				</c:if>
-				
-				<div class="form-group">
-					<label for="email" id="tt">Email &nbsp;&nbsp;</label> 
-					<input	type="text" class="form-control-sm" id="email" name="email"
-						aria-describedby="emailHelp" placeholder="Enter email" value="${user.email}" > 
-						<small id="emailHelp" class="form-text text-muted">We'll never
-						share your email with anyone else.</small>
-				</div>
-				<div class="form-group">
-					<label for="fullname" >Fullname </label> 
-					<input	type="text" class="form-control-sm" id="fullname" name="fullname"
-						 placeholder="Enter fullname" value="${user.fullname}" > 
-				</div>
-				<div class="form-group">
-					<label for="password">Password </label> 
-					<input	type="text" class="form-control-sm" id="password" name="password"
-						 placeholder="Enter password" value="${user.password}" > 
-				</div>
-				 <button type="submit" class="btn btn-primary">Submit</button>
+				<table class="table borderless">
+				<tr>
+				<td> <b>Email:</b></td>
+				 <td><input	type="text" class="form-control" id="email" name="email"
+						aria-describedby="emailHelp" placeholder="Enter email" value="${user.email}"/> 
+						<small id="emailHelp" class="form-text text-muted">
+						We'll never share your email with anyone else.</small>
+				</td>
+				</tr>
+				<tr>
+				<td> <b>Fullname :</b></td> 
+				<td><input	type="text" class="form-control" id="fullname" name="fullname"
+						 placeholder="Enter fullname" value="${user.fullname}"/>
+				</td>
+				</tr>
+				<tr>
+				<td> <b>Password :</b></td>  
+				<td>	<input	type="text" class="form-control" id="password" name="password"
+						 placeholder="Enter password" value="${user.password}"/>
+				</td>
+				</tr>
+				<tr>
+				<td> &nbsp; &nbsp; </td>
+				<td><button type="submit" class="btn btn-primary">Submit</button>
 				 <input type="button" class="btn btn-primary" onclick="javascript:history.go(-1);" value="Cancel"/>
-				 
+				</td>
+				</tr>
+				</table>
 				</form>
 			</div>
 		</div>
@@ -116,9 +121,5 @@
 		
 	</script>
 	<jsp:directive.include file="admin_footer.jsp" />
-	
-	
-	<script	src="../lib/bootstrap/css/bootstrap.min.js"></script>
-
 </body>
 </html>
