@@ -3,16 +3,14 @@ package com.bookstore.dao;
 import static org.junit.Assert.*;
 
 import java.util.List;
-
-import org.junit.After;
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Customer;
 import com.bookstore.entity.Review;
+import com.bookstore.service.ReviewServices;
 
 public class ReviewDAOTest {
 	private static ReviewDAO reviewDAO; 
@@ -105,5 +103,47 @@ public class ReviewDAOTest {
 		System.out.println("Total review -->"+totalreviews);
 		assertTrue(totalreviews>0);
 	}
+	@Test
+	public void testFindByCustomerAndBookNotFound() {
+		Integer customerId = 100;
+		Integer bookId = 99;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNull(result);
+	}
+	
+	@Test
+	public void testFindByCustomerAndBookFound() {
+		Integer customerId = 8;
+		Integer bookId = 2;
+		
+		Review result = reviewDAO.findByCustomerAndBook(customerId, bookId);
+		
+		assertNotNull(result);
+	}
+	
+	@Test
+	public void testListMostRecent() {
+		List<Review> recentReviews = reviewDAO.listMostRecent();
+		
+		assertEquals(3, recentReviews.size());
+	}
 
+	@Test
+	public void testCountByCustomerNotFound() {
+		int customerId = 999;
+		long reviewCount = reviewDAO.countByCustomer(customerId);
+		
+		assertEquals(0, reviewCount);
+	}
+	
+	@Test
+	public void testCountByCustomerFound() {
+		int customerId = 6;
+		long reviewCount = reviewDAO.countByCustomer(customerId);
+		
+		assertEquals(1, reviewCount);
+	}
+	
 }

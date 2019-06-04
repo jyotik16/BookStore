@@ -28,5 +28,12 @@ public class CreateBookServlet extends HttpServlet {
 		bookservices.createBook();
 		
 	}
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		BookServices bookservices = new BookServices(request,response);
+		bookservices.createBook();
+		
+	}
 
 }

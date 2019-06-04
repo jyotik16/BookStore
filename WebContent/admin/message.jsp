@@ -25,15 +25,15 @@
 </head>
 <body>
 	<jsp:directive.include file="admin_header.jsp" />
-	<h2 align="center">Creating new user</h2>
 	<hr width="60%;" />
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="col-12">
 				<h4 align="center">Administrative Bookstore</h4>
+				<h3 align="center"> ${message} </h3>
 			</div>
 			
-			<h3 align="center"> ${message} </h3>
+			
 			
 		</div>
 	</div>

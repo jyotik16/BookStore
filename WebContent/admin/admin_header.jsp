@@ -6,7 +6,7 @@
 		<a href="${pageContext.request.contextPath}/admin/"><i class="fa fa-book" id="book-logo" ></i></a>
 	</div>
 	<div class="p-2">
-		<a href="${pageContext.request.contextPath}/"><h1 class="heading" id="evergreen">EverGreen BookStore</h1></a>
+		<a href="${pageContext.request.contextPath}/" class="evergreen">EverGreen BookStore</a>
 	</div>
 </div>
 </section>
@@ -18,7 +18,7 @@
 	</div>
 	<div class="row">
 		<div class="col-12">
-			Welcome, <c:out value="${sessionScope.useremail}"></c:out> |<a href="admin_logout">Logout</a>
+			<a href="${pageContext.request.contextPath}/admin/"><b>Home</b></a> &nbsp; &nbsp; Welcome, <c:out value="${sessionScope.useremail}"></c:out> |<a href="admin_logout">Logout</a>
 		</div>
 	</div>
 

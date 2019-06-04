@@ -6,18 +6,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<!-- Bootstrap CSS File -->
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
 <link href="../css/style.css" rel="stylesheet">
-<script src="../js/jquery-1.12.4.js"></script>
 <script src="../js/jquery-3.4.0.min.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
+
 <meta charset="ISO-8859-1">
 <title>Manage CustomerList-Bookify-Online Book shop</title>
 </head>
@@ -25,15 +20,15 @@
 
 	<jsp:directive.include file="admin_header.jsp" />
 	<div class="container" align="center">
-		<div class="row">
-			<div class="col-12 py-2">
+		
+			<div class="col-12">
 				<h3>Customer Management</h3>
 				<a href="customer_form.jsp">Create New Customer </a>
 
 			</div>
 			<c:choose>
 				<c:when test="${message!=null}">
-					<div class="col-sm-12">
+					<div class="col-12">
 						<h4 class="message">${message}</h4>
 					</div>
 				</c:when>
@@ -43,8 +38,8 @@
 				</c:otherwise>
 			</c:choose>
 
-			<div class="col-sm-12">
-				<table border=1 class="table">
+			<div class="col-12">
+				<table border=1 class="table table-striped table-bordered">
 					<tr>
 						<th>Index</th>
 						<th>ID</th>
@@ -74,7 +69,7 @@
 				</table>
 			</div>
 		</div>
-	</div>
+	
 	<jsp:directive.include file="admin_footer.jsp" />
 	<script>
 		$(document).ready(function() {

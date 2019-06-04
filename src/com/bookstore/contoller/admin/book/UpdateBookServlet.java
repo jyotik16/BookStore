@@ -20,7 +20,7 @@ public class UpdateBookServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookServices bookservices = new BookServices( request, response);
-		bookservices.updatebook();
+		bookservices.updateBook();
 		
 	}
 

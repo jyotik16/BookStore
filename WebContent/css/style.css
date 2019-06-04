@@ -10,7 +10,6 @@ body{
 	
 }
 a:link{	
-	
 	text-decoration: none;
 }
 a:visited{
@@ -19,16 +18,18 @@ a:visited{
 
 a:hover{
 	color:#1c2ddc;	
-	text-decoration:none;
+	text-decoration:underline;
 }
 
 #book-logo{
 	font-size:42px;
 	color:white;
 }
-#evergreen{
-	color:white;
+a.evergreen{
+	
 	text-decoration:none;
+	font-size: 40px; 
+	font-weight: 700;color:white;
 }
 div.heading{
 	text-align:center;
@@ -74,10 +75,6 @@ margin:0;
 padding:0;
 }
 
-.footerclass{
-	position:relative;
-	margin-top:12%;
-}
 #book-form{
 	text-align:center;
 	position:relative;
@@ -88,7 +85,7 @@ padding:0;
 	height:245px;
 	
 }
-#book-preview{
+.book-preview{
 	width:30%;
 	border:2px groove dimgray;
 }
@@ -136,6 +133,12 @@ table.borderless {
 }
 table.marginless td{
 	padding:0;
+	margin-top:0;
+}
+
+table.fixed td{
+	width:300px;
+	
 }
 .cart{
 	color:white;
@@ -145,4 +148,7 @@ table.marginless td{
 }
 img.book-cart{
 	width:100px; height:144px;
+}
+img.book-border{
+	width:150; height:184; border:2px groove black;
 }

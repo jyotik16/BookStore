@@ -13,9 +13,7 @@
 <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
  -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/jquery-ui.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
-
 <script src="js/jquery-3.4.0.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">

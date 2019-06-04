@@ -6,8 +6,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.bookstore.dao.ReviewDAO;
 import com.bookstore.service.ReviewServices;
 
 @WebServlet("/admin/edit_review")
@@ -20,7 +18,7 @@ public class EditReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 ReviewServices reviewservice = new ReviewServices(request, response);
-		 reviewservice.edit_review();
+		 reviewservice.editReview();
 	}
 
 }

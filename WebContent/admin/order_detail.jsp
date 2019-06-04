@@ -79,7 +79,9 @@
 		<c:forEach items="${order.orderDetails}" var="orderDetail" varStatus="status">
 		<tr>
 			<td>${status.index +1} </td>
-			<td> ${orderDetail.book.title}</td>
+			<td> <img style="vertical-align:middle;"src="data:image/jpg;base64,${orderDetail.book.base64Image}" width="54" height="68"/> 
+					${orderDetail.book.title}
+			</td>
 			<td> ${orderDetail.book.author}</td>
 			<td> <fmt:formatNumber value="${orderDetail.book.price}" type="currency" /></td>
 			<td> ${orderDetail.quantity}</td>
@@ -89,27 +91,15 @@
 		<tr>
 		<td colspan="4" align="right">TOTAL:</td>
 		<td> ${order.getBookCopies()}</td>
-		<td> ${order.total}</td>
+		<td> <fmt:formatNumber value="${order.total}" type="currency" /></td>
 		</tr>
 		</table>
-		<a href="">Edit this order</a> &nbsp; &nbsp; &nbsp; &nbsp;<a href="">Delete this order</a>
+		<a href="edit_order?id=${order.orderId}">Edit this order</a> &nbsp; &nbsp; &nbsp; &nbsp;
 		
 		</div>
 		</div>
 	</div>
 	<jsp:directive.include file="admin_footer.jsp" />
-	<script>
-		$(document).ready(function() {
-				$(".deleteLink").each(function()
-						{$(this).on("click",function() {
-														bookId = $(this).attr("id");
-														if (confirm("Are u sure to delete the book whose ID "+ bookId +" ?")) {
-																		window.location ='delete_book?id='+bookId;
-																	}
-									});
-						});
-			});
-	</script>
 	
 </body>
 </html>

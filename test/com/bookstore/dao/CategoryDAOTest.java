@@ -40,8 +40,8 @@ public class CategoryDAOTest {
 	}
 	@Test
 	public void testUpdateCategory() {
-		Category cate = new Category("Buissness");
-		cate.setCategoryId(1);
+		Category cate = new Category("Ruby");
+		cate.setCategoryId(23);
 		Category category = categoryDAO.update(cate);
 		assertEquals(cate.getName(),category.getName());
 	

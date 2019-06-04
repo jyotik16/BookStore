@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div class="row">			
-			<c:forEach items="${listbooks}" var="book">
+			<c:forEach items="${listBooks}" var="book">
 				<div class="col-lg-4 col-sm-4 col-xs-12 px-0 mx-0 py-3">
 					<div class="p-0">
 						<a href="view_book?id=${book.bookId}"><img src="data:image/jpg;base64,${book.base64Image }" width="130" height="164" /></a>

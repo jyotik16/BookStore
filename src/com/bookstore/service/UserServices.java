@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bookstore.dao.UsersDAO;
 import com.bookstore.entity.Users;
-
+import static com.bookstore.service.CommonUtitlity.*;
 public class UserServices{
 	private UsersDAO userDAO;
 	private HttpServletRequest request;
@@ -24,16 +24,13 @@ public class UserServices{
 		listUser(null);
 	}
 
-	public void listUser(String msg) throws ServletException, IOException {
-		List<Users> list = userDAO.listAll();
-		if (msg != null) {
-			request.setAttribute("message", msg);
+	public void listUser(String message) throws ServletException, IOException {
+		List<Users> listUsers  = userDAO.listAll();
+		request.setAttribute("listUsers", listUsers);
+		if (message != null) {
+			request.setAttribute("message", message);
 		}
-		request.setAttribute("usersList", list);
-
-		RequestDispatcher rd = request.getRequestDispatcher("user_list.jsp");
-		rd.forward(request, response);
-
+		forwardToPage("user_list.jsp", message, request, response);
 	}
 
 	public void createUser() throws ServletException, IOException {
@@ -41,11 +38,10 @@ public class UserServices{
 		String fullname = request.getParameter("fullname");
 		String password = request.getParameter("password");
 		Users exitUser = userDAO.findByEmail(email);
+		String message = null;
 		if (exitUser != null) {
-			request.setAttribute("message", email + " already exits!New User is not created.");
-			RequestDispatcher rd = request.getRequestDispatcher("message.jsp");
-			rd.forward(request, response);
-
+			request.setAttribute("message", email + " already exits!New User is not created.");			
+			forwardToPage("message.jsp", message, request, response);
 		} else {
 			Users newuser = new Users(email, fullname, password);
 			userDAO.create(newuser);
@@ -55,14 +51,19 @@ public class UserServices{
 
 	public void editUser() throws ServletException, IOException {
 				
-		String s = request.getParameter("id");
-		//System.out.println(s);
-		int ID = Integer.valueOf(s);
-		Users edituser = userDAO.get(ID);
-		request.setAttribute("user",edituser);
-		RequestDispatcher rd = request.getRequestDispatcher("user_form.jsp");
-		rd.forward(request, response);
-	
+		int userId = Integer.parseInt(request.getParameter("id"));
+		Users user = userDAO.get(userId );
+
+		String destPage = "user_form.jsp";
+		
+		if (user == null) {
+			destPage = "message.jsp";
+			String errorMessage = "Could not find user with ID " + userId;
+			request.setAttribute("message", errorMessage);
+		} else {
+			request.setAttribute("user", user);			
+		}
+		forwardToPage(destPage, request, response);
 		
 	}
 
@@ -92,10 +93,19 @@ public class UserServices{
 	}
 
 	public void delete_user() throws ServletException, IOException {
-		int Id = Integer.parseInt(request.getParameter("id"));
-		userDAO.delete(Id);
-		String msg = "user has been delete successfully!";
-		listUser(msg);
+		int userId = Integer.parseInt(request.getParameter("id"));
+		String message = null;
+		Users user= userDAO.get(userId);
+		if (user == null) {
+			message = "Could not find user with ID " + userId
+					+ ", or it might have been deleted by another admin";			
+			request.setAttribute("message", message);
+			request.getRequestDispatcher("message.jsp").forward(request, response);			
+		} else {
+			message = "User has been deleted successfully";
+			userDAO.delete(userId);
+			listUser(message);
+		}	
 	}
 	public void login() throws ServletException, IOException {
 		String email = request.getParameter("email");

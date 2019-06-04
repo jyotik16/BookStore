@@ -19,7 +19,7 @@ public class CreateCategoryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CategoryServices cateservices  = new CategoryServices( request, response);
 		 cateservices.createCategory();
-		 cateservices.listCategory("New Category Created Successfully!");
+		
 	}
 
 }

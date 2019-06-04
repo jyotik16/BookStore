@@ -9,6 +9,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
+import com.bookstore.entity.Book;
+
 
 public class JpaDAO<E> {
 	private static EntityManagerFactory entityManagerFactory;
@@ -35,8 +37,7 @@ public class JpaDAO<E> {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
-		entityManager.getTransaction().commit();
-		
+		entityManager.getTransaction().commit();		
 		entityManager.close();
 		return entity;
 	}
@@ -122,6 +123,19 @@ public class JpaDAO<E> {
 		if(entityManagerFactory!=null) {
 			entityManagerFactory.close();
 		}
+	}
+	public List<Object[]> findWithNamedQueryObjects(String queryName, int firstResult, int maxResult) {
+		EntityManager entityManager = entityManagerFactory.createEntityManager();
+		
+		Query query = entityManager.createNamedQuery(queryName);		
+		query.setFirstResult(firstResult);
+		query.setMaxResults(maxResult);
+		
+		List<Object[]> result = query.getResultList();
+		
+		entityManager.close();
+		
+		return result;
 	}
 
 }

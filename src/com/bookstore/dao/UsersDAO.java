@@ -51,9 +51,9 @@ public class UsersDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 		return super.findWithNamedQuery("Users.findAll");
 	}
 
+
 	@Override
 	public long count() {
-		
 		return super.countWithNamedQuery("Users.countAll");
 	}
 	public boolean checkLogin(String email,String password) {

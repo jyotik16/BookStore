@@ -2,7 +2,9 @@ package com.bookstore.service;
 
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,21 +13,21 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.bookstore.dao.BookDAO;
-import com.bookstore.dao.CustomerDAO;
+import com.bookstore.dao.OrderDAO;
 import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Book;
+import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Customer;
+import com.bookstore.entity.OrderDetail;
 import com.bookstore.entity.Review;
-
+import static com.bookstore.service.CommonUtitlity.*;
 public class ReviewServices {
 	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private ReviewDAO reviewDAO;
-	
 	public ReviewServices( HttpServletRequest request,HttpServletResponse response) {
 		super();
-		
 		reviewDAO  = new ReviewDAO();
 		this.request = request;
 		this.response = response;
@@ -36,26 +38,22 @@ public class ReviewServices {
 	}
 	public void listAllReview(String message) throws ServletException, IOException{
 		List<Review> listreviews = reviewDAO.listAll();
-		if(message!=null) {
-			request.setAttribute("message",message);
-		}
 		request.setAttribute("listreviews", listreviews);
-		forwardmethod("review_list.jsp");
+		forwardToPage("review_list.jsp", message, request, response);	
 				
 	}
-		public void forwardmethod(String path) throws ServletException, IOException {
-		
-		RequestDispatcher rd = request.getRequestDispatcher(path);
-		rd.forward(request, response);
-		
-	}
-	public void edit_review() throws ServletException, IOException {
+				
+	public void editReview() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("id"));
 		Review review = reviewDAO.get(reviewId);
 		
-		request.setAttribute("review", review);
-		forwardmethod("review_form.jsp");
-		
+		if (review != null) {		
+			request.setAttribute("review", review);		
+			forwardToPage("review_form.jsp", request, response);
+		} else {
+			String message = "Could not find review with ID " + reviewId;
+			showMessageBackend(message, request, response);
+		}
 	}
 	public void update_review() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("reviewId"));
@@ -74,9 +72,16 @@ public class ReviewServices {
 	}
 	public void delete_review() throws ServletException, IOException {
 		Integer reviewId = Integer.parseInt(request.getParameter("id"));
-		reviewDAO.delete(reviewId);
-		String msg = "The Review has been deleted successfully!.";
-		listAllReview(msg);
+		Review review = reviewDAO.get(reviewId);
+		if (review != null) {
+			reviewDAO.delete(reviewId);
+			String message = "The review has been deleted successfully.";
+			listAllReview(message);
+		} else {
+			String message = "Could you find review with ID " + reviewId
+					+ ", or it might have been deleted by another admin";
+			showMessageBackend(message, request, response);
+		}
 		
 	}
 	
@@ -84,6 +89,7 @@ public class ReviewServices {
 		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
 		BookDAO bookDAO = new BookDAO();
 		Book book = bookDAO.get(bookId);
+		
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("book", book);
@@ -99,8 +105,7 @@ public class ReviewServices {
 		}else {
 			targetPage="frontend/review_form.jsp";			
 		}
-		RequestDispatcher rd = request.getRequestDispatcher(targetPage);
-		rd.forward(request, response);
+		forwardToPage(targetPage, request, response);
 		
 	}
 	public void submitReview() throws ServletException, IOException {
@@ -122,8 +127,39 @@ public class ReviewServices {
 		review.setCustomer(customer);
 		reviewDAO.create(review);
 					
-		String targetPage="frontend/review_done.jsp";
-		RequestDispatcher rd = request.getRequestDispatcher(targetPage);
-		rd.forward(request, response);
+		forwardToPage("frontend/review_done.jsp", request, response);
+	}
+	
+	public boolean checkOrderWithCustomerAndBook(Integer bookId) throws ServletException, IOException {
+			BookDAO bookDao = new BookDAO();
+			Book book = bookDao.get(bookId);
+			System.out.println("book1= "+book.getBookId());
+			Boolean flag =false;
+			HttpSession session = request.getSession(); 				
+			Customer customer = (Customer) session.getAttribute("loggedCustomer");
+			if(customer == null) {
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+				rd.forward(request, response);
+			}else {
+				OrderDAO orderDAO = new OrderDAO();
+				List<BookOrder> list = orderDAO.listByCutsomer(customer.getCustomerId());
+				
+				for(BookOrder bb:list) {
+					Set<OrderDetail> details = bb.getOrderDetails();
+					Iterator<OrderDetail> iterator = details.iterator();
+					while(iterator.hasNext()) {
+						OrderDetail orderDetail = (OrderDetail) iterator.next();
+					System.out.println(" book2 = "+orderDetail.getBook().getBookId());
+						if(orderDetail.getBook().getBookId().equals(book.getBookId())){
+							flag = true;
+							break;
+						}
+					}
+				}
+			}
+			return flag;
+		}
+	public void showCheckoutForm() throws ServletException, IOException {
+		forwardToPage("frontend/checkout.jsp", request, response);
 	}
 }

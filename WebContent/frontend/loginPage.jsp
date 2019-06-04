@@ -9,11 +9,10 @@
 <link rel="stylesheet" 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="css/jquery-ui.min.css" rel="stylesheet"></link>
 <link href="css/style.css" rel="stylesheet">
 <script src="js/jquery-3.4.0.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
-<script src="js/jquery-ui.min.js"></script>
+
 <meta charset="ISO-8859-1">
 <title>Customer Login</title>
 </head>
@@ -36,11 +35,11 @@
 					<table>
 						<tr>
 							<td>Email:</td>
-							<td><input type="text" id="email" name="email"	placeholder="enter email" /></td>
+							<td><input type="text" id="email" name="email" class="form-control"	placeholder="enter email" /></td>
 						</tr>
 						<tr>
 							<td>Password:</td>
-							<td><input type="password" id="password" name="password" placeholder="enter password" /></td>
+							<td><input type="password" id="password" name="password"  class="form-control" placeholder="enter password" /></td>
 						</tr>
 						<tr>
 							<td colspan="2" align="center">
@@ -54,7 +53,7 @@
 	<jsp:directive.include file="footer.jsp"/>
 	<script>
 		$(function() {
-			$("form[name='cutomerform']").validate(
+			$("form[name='customerform']").validate(
 					{
 				rules : {
 					email : {
@@ -70,7 +69,7 @@
 					},
 					password : "Please enter password"
 
-				}
+				},
 				submitHandler : function(form) {
 					form.submit();
 				}
@@ -79,6 +78,6 @@
 		});
 	</script>
 	
- <!-- aman@mail.com 12345 -->
+ 
 </body>
 </html>

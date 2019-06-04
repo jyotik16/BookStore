@@ -16,18 +16,15 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/style.css" rel="stylesheet">
-
-<script src="../js/jquery-ui.min.js"></script>
-<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
 <script src="../js/jquery-3.4.0.min.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <meta charset="ISO-8859-1">
 <c:choose>
 		<c:when test="${user!=null}">
-			<title>Create New User</title>
+			<title>Edit User</title>
 		</c:when>
 		<c:otherwise>
-			<title>Edit User</title>
+			<title>Create New User</title>
 		</c:otherwise>
 </c:choose>
 
@@ -46,8 +43,8 @@
 
 	<hr width="60%;" />
 	<div class="container" align="center">
-		<div class="row">
-			<div class="col-6" style="margin-left:20%; ">
+			<div class="col-8">
+			
 				<c:if test="${user != null}">
 					<form name="userform" id="userform" action="update_user" method="post" >
 						<input type="hidden" name="userId" value="${user.userid}">
@@ -78,15 +75,14 @@
 				</tr>
 				<tr>
 				<td> &nbsp; &nbsp; </td>
-				<td><button type="submit" class="btn btn-primary">Submit</button>
+				<td><button type="submit" class="btn btn-primary">Submit</button> &nbsp; &nbsp;
 				 <input type="button" class="btn btn-primary" onclick="javascript:history.go(-1);" value="Cancel"/>
 				</td>
 				</tr>
 				</table>
 				</form>
+				</div>
 			</div>
-		</div>
-	</div>
 	<script type="text/javascript">
 
 	$(function(){

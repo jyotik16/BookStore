@@ -28,16 +28,15 @@
 <body>
 	<jsp:directive.include file="admin_header.jsp" />
 	<div class="container" align="center">
-		<div class="row">
-			<div class="col-sm-12">
+		
+			<div class="col-12">
 				<h3>User Management</h3>
 				<a href="user_form.jsp">Create New User </a>
-				
 			</div>
 			<c:choose>
 			<c:when test="${message!=null}">
-			<div class="col-sm-12 py-2">
-			<h4 align="center"> ${message} </h4>
+			<div class="col-12">
+				<h4 align="center"> ${message} </h4>
 			</div>
 			</c:when>
 			<c:otherwise>
@@ -45,8 +44,8 @@
 			</c:otherwise>
 			</c:choose>
 			
-			<div class="col-sm-12">
-				<table border=1 class="table">
+			<div class="col-12">
+				<table border=1 class="table table-striped table-bordered">
 					<tr>
 						<th >Index</th>
 						<th>ID</th>
@@ -54,7 +53,7 @@
 						<th>Fullname</th>
 						<th>Actions</th>
 					</tr>
-					<c:forEach var="user" items="${usersList}" varStatus="status">
+					<c:forEach var="user" items="${listUsers}" varStatus="status">
 					<tr>
 					<td> ${status.index + 1 } </td>
 					<td> ${user.userid } </td>
@@ -62,15 +61,13 @@
 					<td> ${user.fullname } </td>
 					<td><a href="edit_user?id=${user.userid}">Edit</a>	
 					<a href="javascript:void(0);" class="deleteLink" id="${user.userid}">Delete</a></td>
-					
- 					<%-- <a href="javascript:confirmDelete(${user.userid})">Delete</a></td> --%>
-					
+									
 					</tr>					
 					</c:forEach>
 
 				</table>
 			</div>
-			</div>
+			
 			</div>
 <jsp:directive.include file="admin_footer.jsp" />
 <script>
@@ -85,11 +82,6 @@
 		});
 });  
 
-/*  function confirmDelete(userid){
-	if(confirm("Are u sure to delete user with ID "+ userid+" ?")){
-	window.location = "delete_user?id="+userid;
-		}} */
- 
 </script>
 
 </body>

@@ -101,7 +101,6 @@
 		&nbsp; &nbsp;
 			<select name="paymentMethod" class="form-control form-control-sm colorful-select dropdown-primary">
 				<option value="Cash On Delivery" selected> Cash On Delivery </option>
-				<option value="Cash On Delivery">  PayTM</option>
 			</select>
 		
 		
@@ -144,10 +143,7 @@
 					form.submit();
 				}
 			});
-			/* $("#PlaceOrderButton").click(function(){
-				window.location ='place_order';
-			}); */
-			
+						
 		});
 	</script>
 	<jsp:directive.include file="footer.jsp" />

@@ -1,13 +1,14 @@
 package com.bookstore.dao;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.persistence.criteria.Order;
-
+import com.bookstore.entity.Book;
 import com.bookstore.entity.BookOrder;
 import com.bookstore.entity.Category;
-import com.bookstore.entity.Customer;
+import com.bookstore.entity.OrderDetail;
 
 public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder> {
 
@@ -22,6 +23,17 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	public BookOrder get(Object orderId) {
 		
 		return super.find(BookOrder.class, orderId);
+	}
+	public BookOrder get(Integer orderId,Integer customerId) {
+		
+		Map<String,Object> parameters = new HashMap<>();
+		parameters.put("orderId", orderId);
+		parameters.put("customerId", customerId);
+		List<BookOrder> result = super.findWithNamedQuery("BookOrder.findByIdAndCustomer", parameters);
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
 	}
 
 	@Override
@@ -53,6 +65,29 @@ public class OrderDAO extends JpaDAO<BookOrder> implements GenericDAO<BookOrder>
 	public List<BookOrder> listByCutsomer(Integer customerId){
 		return super.findWithNamedQuery("BookOrder.findByCustomer","customerId", customerId);
 	}
-	
+
+	public List<BookOrder> listMostRecentSales() {
+		return super.findWithNamedQuery("BookOrder.findAll", 0, 3);
+	}
+	public List<BookOrder> listByCustomer(Integer customerId) {
+		return super.findWithNamedQuery("BookOrder.findByCustomer", 
+				"customerId", customerId);
+	}
+	public BookOrder findOrderWithCustomerAndBook(Integer customerId,Integer BookId){
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("customerID", customerId);
+		parameters.put("bookID", BookId);
+		List<BookOrder> result = super.findWithNamedQuery("OrderDetail.findOrderWithCustomerAndBook", parameters);
+		if(!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
+	}
+	public long countOrderDetailByBook(int bookId) {
+		return super.countWithNamedQuery("OrderDetail.countByBook", "bookId", bookId);
+	}
+	public long countByCustomer(int customerId) {
+		return super.countWithNamedQuery("BookOrder.countByCustomer", "customerId", customerId);
+	}
 
 }

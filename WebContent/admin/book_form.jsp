@@ -10,13 +10,19 @@
 <link rel="stylesheet" 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 <link rel="stylesheet" href="..//css/richtext.min.css">
-<!-- <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
- -->
-<link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../css/jquery-ui.min.css" rel="stylesheet"></link>
+ 
+<link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../lib/bootstrap/js/bootstrap.min.css" rel="stylesheet"> -->
+	
+<link href="../css/jquery-ui.min.css" rel="stylesheet">
+<link href="../css/jquery-ui.min.css" rel="stylesheet" >
 <link href="../css/style.css" rel="stylesheet">
+
 <script src="../js/jquery-3.4.0.min.js"></script>
 <script src="../js/jquery.validate.min.js"></script>
+
 <script src="../js/jquery-ui.min.js"></script>
 <script src="../js/jquery.richtext.min.js"></script>
 <meta charset="ISO-8859-1">
@@ -61,7 +67,7 @@
 						<div class="md-form py-2">
 							<label for="category">Category </label> 
 							<select class="form-control" name="category" id="category">
-							<c:forEach items="${listcategory}" var="category" >
+							<c:forEach items="${listCategory}" var="category" >
 									<c:if test="${category.categoryId eq book.category.categoryId }">
 										<option value="${category.categoryId}" selected>${category.name}</option>
 									</c:if>
@@ -120,12 +126,14 @@
 					<!--Grid column-->
 					<div class="col-md-12">
 						<div class="md-form py-2">
-							<input type="text" class="form-control" id="publishdate" name="publishdate" placeholder="Enter PublishDate" value="<fmt:formatDate pattern="MM/dd/yyyy" value='${book.publishDate}'/>"/>
+							<input type="text" class="form-control" id="publishDate" name="publishDate" placeholder="Enter PublishDate" value="<fmt:formatDate pattern="MM/dd/yyyy" value='${book.publishDate}'/>"/>
 
 						</div>
 					</div>
 				</div>
+				
 				<div class="row">
+				
 					<div class="col-md-12">
 						<div class="md-form py-2">
 							<i class="fa fa-pencil prefix fa-2x"></i> 
@@ -139,20 +147,18 @@
 					<div class="col-md-6">
 						<div class="md-form py-2">
 							<div class="custom-file">
-								<input type="file" class="custom-file-input" id="bookImage"
-									name="bookImage"> <label class="custom-file-label"
-									for="bookImage">Choose file</label>
-									
+								<input type="file" class="custom-file-input" id="bookImage"	name="bookImage"> 
+									<label class="custom-file-label" for="bookImage">Choose file</label>						
 								
 							</div>
 						</div>
 					</div>
+					
 					<div class="col-md-6">
-					<img id="book-preview" alt="Image preview" src="data:image/jpg;base64,${book.base64Image}"/>
+					<img id="thumbnail" alt="Image preview" src="data:image/jpg;base64,${book.base64Image}" width=124 height=154 />
 					</div>
 					<!--Grid column-->
 				</div>
-				
 				<div class="row">
 					<div class="col-md-12 py-2">
 						<button type="submit" class="btn btn-primary">Submit</button>
@@ -182,7 +188,7 @@
 									isbn : "required",
 									price : "required",
 									publishdate: "required",
-									<c:if test="${book==null}">
+									<c:if test=" ${book == null}">
 										bookImage : "required",
 									</c:if>		
 									description : "required",							

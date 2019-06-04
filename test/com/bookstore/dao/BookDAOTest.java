@@ -144,7 +144,7 @@ private static BookDAO bookDAO;
 	}
 	@Test
 	public void testlistNewBooks() {
-		List<Book> list = bookDAO.listNewBook();
+		List<Book> list = bookDAO.listNewBooks();
 		for(Book abook:list) {
 			System.out.println(abook.getTitle()+"--->"+abook.getPublishDate());
 		}
@@ -184,7 +184,29 @@ private static BookDAO bookDAO;
 	@Test
 	public void testCountByCategory() {
 		int categoryId =1;
-		 long numOfBooks = bookDAO.countBycategory(categoryId);
+		 long numOfBooks = bookDAO.countByCategory(categoryId);
 		assertTrue(numOfBooks >0);
 	}
+	@Test
+	public void testListBestSellingBooks() {
+		List<Book> topBestSellingBooks = bookDAO.listBestSellingBooks();
+		
+		for (Book book : topBestSellingBooks) {
+			System.out.println(book.getTitle());
+		}
+		
+		assertEquals(4, topBestSellingBooks.size());
+	}
+	
+	@Test
+	public void testListMostFavoredBooks() {
+		List<Book> topFavoredBooks = bookDAO.listMostFavoredBooks();
+
+		for (Book book : topFavoredBooks) {
+			System.out.println(book.getTitle());
+		}
+		
+		assertEquals(4, topFavoredBooks.size());
+	}
+
 }

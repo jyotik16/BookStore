@@ -1,31 +1,26 @@
 package com.bookstore.service;
-
+import static com.bookstore.service.CommonUtitlity.*;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.bookstore.dao.BookDAO;
-import com.bookstore.dao.CategoryDAO;
 import com.bookstore.dao.CustomerDAO;
+import com.bookstore.dao.OrderDAO;
+import com.bookstore.dao.ReviewDAO;
 import com.bookstore.entity.Customer;
 
 public class CustomerServices {
 
-	private BookDAO bookDAO;	
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private CustomerDAO customerDAO;
 	
 	public CustomerServices( HttpServletRequest request,HttpServletResponse response) {
 		super();
-		bookDAO = new BookDAO();
 		this.customerDAO = new CustomerDAO();
 		this.request = request;
 		this.response = response;
@@ -39,26 +34,25 @@ public class CustomerServices {
 		
 		List<Customer> listcustomer = customerDAO.listAll();
 		request.setAttribute("listcustomer", listcustomer);
-		if(message!=null) {
-			request.setAttribute("message", message);
-		}
-		RequestDispatcher rd = request.getRequestDispatcher("customer_list.jsp");
-		rd.forward(request, response);			
-		}
+		forwardToPage("customer_list.jsp", message, request, response);
+	}
 
 	public void create_customer() throws ServletException, IOException {
 		String email = request.getParameter("email");
-		Customer exitcustomer = customerDAO.findByemail(email);
+		Customer existCustomer = customerDAO.findByemail(email);
 		
-		if(exitcustomer!=null) {
-			String msg = "Could not create new customer because customer with this " +email+
-					" already registered by another customer.";
-			listCustomers(msg);
-		}else {
-			Customer newcustomer = new Customer();
-			updateCustomerFieldsForm(newcustomer);
-			customerDAO.create(newcustomer);
-			listCustomers("New customer has been created successfully!");
+		if (existCustomer != null) {
+			String message = "Could not create new customer: the email "
+					+ email + " is already registered by another customer.";
+			listCustomers(message);
+			
+		} else {
+			Customer newCustomer = new Customer();
+			updateCustomerFieldsFromForm(newCustomer);
+			customerDAO.create(newCustomer);
+			
+			String message = "New customer has been created successfully.";
+			listCustomers(message);
 			
 		}
 		
@@ -67,11 +61,13 @@ public class CustomerServices {
 	public void edit_customer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
 		Customer customer = customerDAO.get(customerId);
-		request.setAttribute("customer", customer);
-		//System.out.println("customer id ="+customerId);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("customer_form.jsp");
-		rd.forward(request, response);	
+		if (customer == null) {
+			String message = "Could not find customer with ID " + customerId;
+			showMessageBackend(message, request, response);
+		} else {
+			request.setAttribute("customer", customer);		
+			forwardToPage("customer_form.jsp", request, response);			
+		}	
 		
 	}
 
@@ -79,21 +75,26 @@ public class CustomerServices {
 		Integer customerId = Integer.parseInt(request.getParameter("customerID"));
 		String email = request.getParameter("email");
 		Customer customerByEmail = customerDAO.findByemail(email);
-		String msg;
+		String message = null;
 		
-		if(customerByEmail!=null && customerByEmail.getCustomerId()!=customerId) {
-			msg = "Could not update customer becuase there 's another customer having the same email.";
+		if (customerByEmail != null && customerByEmail.getCustomerId() != customerId) {
+			message = "Could not update the customer ID " + customerId
+					+ "because there's an existing customer having the same email.";
 			
-		}else {						
+		} else {
+			
 			Customer customerById = customerDAO.get(customerId);
-			updateCustomerFieldsForm(customerById);
+			updateCustomerFieldsFromForm(customerById);
+			
 			customerDAO.update(customerById);
-			msg = "customer has been updated successfully!";
+			
+			message = "The customer has been updated successfully.";
 		}
-		listCustomers(msg);
+		
+		listCustomers(message);
 	}
 	
-	private void updateCustomerFieldsForm(Customer customer) {
+	private void updateCustomerFieldsFromForm(Customer customer) {
 		String email = request.getParameter("email");
 		String Fullname = request.getParameter("fullname");
 		String Phoneno = request.getParameter("phoneno");
@@ -106,6 +107,7 @@ public class CustomerServices {
 		customer.setAddress(address);
 		customer.setCity(City);
 		customer.setCountry(Country);
+		
 		if(email!=null && !email.equals("")) {
 		customer.setEmail(email);
 		}
@@ -120,31 +122,58 @@ public class CustomerServices {
 	
 	public void delete_customer() throws ServletException, IOException {
 		Integer customerId = Integer.parseInt(request.getParameter("id"));
-		customerDAO.delete(customerId);
+		Customer customer = customerDAO.get(customerId);
 		
-		listCustomers("The customers has been deleted successfully!");
+		if (customer != null) {
+			ReviewDAO reviewDAO = new ReviewDAO();
+			long reviewCount = reviewDAO.countByCustomer(customerId);
+			
+			if (reviewCount > 0) {
+				String message = "Could not delete customer with ID " + customerId
+						+ " because he/she posted reviews for books.";
+				showMessageBackend(message, request, response);
+			} else {
+				OrderDAO orderDAO = new OrderDAO();
+				long orderCount = orderDAO.countByCustomer(customerId);
+				
+			if (orderCount > 0) {
+					String message = "Could not delete customer with ID " + customerId 
+							+ " because he/she placed orders.";
+					showMessageBackend(message, request, response);
+			} else {
+					customerDAO.delete(customerId);			
+					String message = "The customer has been deleted successfully.";
+					listCustomers(message);
+				}
+			}
+		} else {
+			String message = "Could not find customer with ID " + customerId + ", "
+					+ "or it has been deleted by another admin";
+			showMessageBackend(message, request, response);
+		}
 	}
 
 	public void register_customer() throws ServletException, IOException {
 		String email = request.getParameter("email");
-		Customer exitcustomer = customerDAO.findByemail(email);
+		Customer existCustomer = customerDAO.findByemail(email);
 		//System.out.println(" --->"+exitcustomer.getEmail());
-				String msg =null;
-		if(exitcustomer!=null) {
-			 msg = "Could not register. This " +email+
-					" is already registered by another customer.";
+		String message = "";
+		
+		if (existCustomer != null) {
+			message = "Could not register. The email "
+					+ email + " is already registered by another customer.";
+		} else {
 			
-		}else {
+			Customer newCustomer = new Customer();
+			updateCustomerFieldsFromForm(newCustomer);			
+			customerDAO.create(newCustomer);
 			
-			Customer newcustomer = new Customer();
-			updateCustomerFieldsForm(newcustomer);
-			customerDAO.create(newcustomer);
-			msg = "You have registered successfully. Thankyou!"+" <a href='login'> Click here </a> to login";
-			
-		}	
-		request.setAttribute("message",msg);
-		RequestDispatcher rd = request.getRequestDispatcher("frontend/message.jsp");
-		rd.forward(request, response);
+			message = "You have registered successfully! Thank you.<br/>"
+					+ "<a href='login'>Click here</a> to login";			
+		}
+		
+		showMessageFrontend(message, request, response);
+	
 		
 	}
 
@@ -162,8 +191,8 @@ public class CustomerServices {
 		
 		Customer customer = customerDAO.checkLogin(email, password);
 		if(customer==null) {
-			String msg = "Invalid email and password!";
-			request.setAttribute("message", msg);
+			String message = "Login failed. Please check your email and password.";
+			request.setAttribute("message", message);
 			showLogin();
 		}else {
 			
@@ -175,26 +204,23 @@ public class CustomerServices {
 				session.removeAttribute("redirectURL");
 				response.sendRedirect(redirectURL);
 			}else {
-			request.getSession().setAttribute("loggedCustomer", customer);			
+					
 			showCustomerProfile();
 			}
 		}		
 	}
 	
 	public void showCustomerProfile() throws ServletException, IOException {
-		System.out.println("profile...");
-		RequestDispatcher rd = request.getRequestDispatcher("frontend/customer_profile.jsp");
-		rd.forward(request, response);
+		forwardToPage("frontend/customer_profile.jsp", request, response);
 	}
 
 	public void showCustomerProfileEditForm() throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("frontend/edit_profile.jsp");
-		rd.forward(request, response);
+		forwardToPage("frontend/edit_profile.jsp", request, response);
 	}
 
 	public void updateCustomerProfile() throws ServletException, IOException {
 		Customer customer = (Customer) request.getSession().getAttribute("loggedCustomer");
-		updateCustomerFieldsForm(customer);
+		updateCustomerFieldsFromForm(customer);
 		customerDAO.update(customer);
 		
 		showCustomerProfile();

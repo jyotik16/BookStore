@@ -7,11 +7,10 @@
 <!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css?family=Roboto Slab" rel="stylesheet">
 <link rel="stylesheet" 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Bootstrap CSS File -->
 <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet"	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link href="css/style.css" rel="stylesheet">
-
+<!-- jquery for stars -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <meta charset="ISO-8859-1">
@@ -23,11 +22,11 @@
 	<div class="container" align="center">
 		<div class="row">
 			<div class="col-lg-12">
-				<h2>New Books</h2>				
+				<h3><a href="list_new_book" style="color:black;">New Books</a></h3>				
 			</div>
 		</div>
 		<div class="row">			
-			<c:forEach items="${listNewbooks}" var="book">
+			<c:forEach items="${listNewBooks}" var="book">
 				<div class="col-lg-3 col-sm-3 col-xs-12 px-0 mx-0 py-3">
 					<div class="p-0">
 						<a href="view_book?id=${book.bookId}"><img src="data:image/jpg;base64,${book.base64Image }" width="130" height="164" /></a>
@@ -36,17 +35,47 @@
 						<b style="color:black;">${book.title}</b></a>						
 					</div>
 					<div class="p-0">					 
-					<c:forTokens items="${book.ratingStars}" delims="," var="star">
-					<c:if test="${star eq 'on'}">
-					<img src="images/rating-on.png" />
-					</c:if>
-					<c:if test="${star eq 'off'}">
-					<img src="images/rating-off.png" />
-					</c:if>
-					<c:if test="${star eq 'half'}">
-					<img src="images/rating-half.png" />
-					</c:if>
-					</c:forTokens>
+					<jsp:directive.include file="book_rating.jsp" />
+					</div>
+					<div class="p-0"><i>${book.author}</i></div>
+					<div class="p-0"><b>$ ${book.price}</b></div>
+				</div>
+			</c:forEach> 
+		</div>
+		<div class="row">	
+		<div class="col-lg-12">
+				<h3><a href="list_best_selling_book" style="color:black;">Most Selling Books</a></h3>				
+			</div>		
+			<c:forEach items="${listBestSellingBooks}" var="book">
+				<div class="col-lg-3 col-sm-3 col-xs-12 px-0 mx-0 py-3">
+					<div class="p-0">
+						<a href="view_book?id=${book.bookId}"><img src="data:image/jpg;base64,${book.base64Image }" width="130" height="164" /></a>
+					</div>
+					<div class="p-0"><a href="view_book?id=${book.bookId}">
+						<b style="color:black;">${book.title}</b></a>						
+					</div>
+					<div class="p-0">					 
+					<jsp:directive.include file="book_rating.jsp" />
+					</div>
+					<div class="p-0"><i>${book.author}</i></div>
+					<div class="p-0"><b>$ ${book.price}</b></div>
+				</div>
+			</c:forEach> 
+		</div>
+		<div class="row">	
+		<div class="col-lg-12">
+				<h3><a href="list_most_favorated_book" style="color:black;">Most Favorated Books</a></h3>				
+			</div>		
+			<c:forEach items="${listFavoredBooks}" var="book">
+				<div class="col-lg-3 col-sm-3 col-xs-12 px-0 mx-0 py-3">
+					<div class="p-0">
+						<a href="view_book?id=${book.bookId}"><img src="data:image/jpg;base64,${book.base64Image }" width="130" height="164" /></a>
+					</div>
+					<div class="p-0"><a href="view_book?id=${book.bookId}">
+						<b style="color:black;">${book.title}</b></a>						
+					</div>
+					<div class="p-0">					 
+					<jsp:directive.include file="book_rating.jsp" />
 					</div>
 					<div class="p-0"><i>${book.author}</i></div>
 					<div class="p-0"><b>$ ${book.price}</b></div>
