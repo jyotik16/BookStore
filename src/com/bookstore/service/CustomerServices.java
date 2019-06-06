@@ -199,6 +199,7 @@ public class CustomerServices {
 			HttpSession session = request.getSession();
 			session.setAttribute("loggedCustomer", customer);
 			Object objRedirectURL = session.getAttribute("redirectURL");
+			
 			if(objRedirectURL!=null) {
 				String redirectURL = (String) objRedirectURL;
 				session.removeAttribute("redirectURL");

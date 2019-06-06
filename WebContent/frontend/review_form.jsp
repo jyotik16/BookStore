@@ -44,7 +44,7 @@
 					id="book-detail" /></td>
 				<td> <div id="rateYo"> </div>
 				<input type="hidden" id="rating" name="rating" />
-				<input type="hidden" name="bookId"  class="form-control" value="${book.bookId}" />
+				<input type="hidden" name="id"  class="form-control" value="${book.bookId}" />
 				</td>
 				</tr>
 				<tr>

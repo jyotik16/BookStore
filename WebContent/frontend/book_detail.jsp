@@ -38,6 +38,7 @@
 					<a href="#reviews">${fn:length(book.reviews)} Reviews</a>
 					<h4>Description</h4> ${book.description}</td>
 				<td>$ <b>${book.price}</b> <br />
+					<input type="hidden" name="id" value="${book.bookId}"> 
 					<button class="btn btn-primary btn-block" id="ButtonAddToCart" style="width:150px;">
 					Add	To Cart</button>
 				</td>
@@ -45,7 +46,7 @@
 			<tr>
 				<td colspan="2"><h4>Customer Reviews</h4></td>
 				<td>
-				<button class="btn btn-primary" id="buttonWriteReview">Write Reviews</button>
+				<a href="write_review?id=${book.bookId}">Write Reviews</a>
 				</td>
 				<td></td>
 			</tr>
@@ -86,7 +87,7 @@
 	<script type="text/javascript">
 	$(document).ready(function() {
     $("#buttonWriteReview").click(function(){
-			window.location ='write_review?bookId='+${book.bookId};
+			window.location ='write_review?id='+${book.bookId};
 		});
     $("#ButtonAddToCart").click(function(){
 		window.location ='add_to_cart?bookId='+${book.bookId};

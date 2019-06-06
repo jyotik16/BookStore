@@ -23,18 +23,17 @@ public class WriteReviewServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReviewServices review = new ReviewServices(request, response);
-
-		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
-		boolean result = review.checkOrderWithCustomerAndBook(bookId);
-		if (result) {
-			review.showReviewForm();
-		} else {
-			String message = "You are not authorized to review this book.";
-			request.setAttribute("message", message);
-			String targetPage = "frontend/message.jsp";
-			RequestDispatcher rd = request.getRequestDispatcher(targetPage);
-			rd.forward(request, response);
-		}
+		//review.showReviewForm();		
+		  Integer bookId = Integer.parseInt(request.getParameter("id"));
+		  
+		  boolean result = review.checkOrderWithCustomerAndBook(bookId); 
+		  if (result) {
+		  review.showReviewForm(); } 
+		  else { 
+			  String message = "You are not authorized to review this book.";
+		  request.setAttribute("message", message); 
+		  String targetPage = "frontend/message.jsp"; RequestDispatcher rd =
+		  request.getRequestDispatcher(targetPage); rd.forward(request, response); } 
 		 
 	
 		

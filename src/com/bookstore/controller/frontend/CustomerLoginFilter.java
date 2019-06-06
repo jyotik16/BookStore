@@ -37,13 +37,13 @@ public class CustomerLoginFilter implements Filter {
 		boolean loggedin = ((session!=null) && (session.getAttribute("loggedCustomer") !=null));
 		String requestURL = httprequest.getRequestURL().toString();
 		
-		System.out.println("requestURL "+requestURL);
-		System.out.println("path "+path);		
+		System.out.println("requestURL :"+requestURL);
+		System.out.println("path :"+path);		
 		System.out.println("loggedIn "+loggedin);
 		
 		if(!loggedin && isLoginReqiredURL(requestURL)) {
 			String queryString = httprequest.getQueryString();
-			System.out.println("query string="+queryString);
+			System.out.println("------->Query string----->"+queryString+" "+requestURL);
 			String redirectURL = requestURL;
 			
 			if(queryString!=null) {

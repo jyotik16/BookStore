@@ -86,7 +86,7 @@ public class ReviewServices {
 	}
 	
 	public void showReviewForm() throws ServletException, IOException {
-		Integer bookId = Integer.parseInt(request.getParameter("bookId"));
+		Integer bookId = Integer.parseInt(request.getParameter("id"));
 		BookDAO bookDAO = new BookDAO();
 		Book book = bookDAO.get(bookId);
 		
@@ -109,7 +109,7 @@ public class ReviewServices {
 		
 	}
 	public void submitReview() throws ServletException, IOException {
-		Integer bookreviewId = Integer.parseInt(request.getParameter("bookId"));
+		Integer bookreviewId = Integer.parseInt(request.getParameter("id"));
 		float rating = Float.parseFloat(request.getParameter("rating"));
 		String headline = request.getParameter("headline");
 		String comment = request.getParameter("comment");

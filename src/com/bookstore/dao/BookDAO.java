@@ -89,6 +89,8 @@ public class BookDAO extends JpaDAO<Book> implements GenericDAO<Book> {
 			for (Object[] elements : result) {
 				Book book = (Book) elements[0];
 				mostFavoredBooks.add(book);
+				System.out.println("fav book=>"+book);
+				
 			}
 		} 
 		
